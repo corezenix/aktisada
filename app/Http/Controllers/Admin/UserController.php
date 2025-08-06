@@ -7,11 +7,13 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Facades\FileUpload;
+use Maatwebsite\Excel\Facades\Excel;
 
 use App\Models\User;
 use App\Models\PurchaseScratch;
 use App\Models\ScratchCount;
 use App\Models\Settings;
+use App\Imports\UsersImport;
 
 use Validator;
 
@@ -287,10 +289,10 @@ public function activateDeactivate($op,$id)
             return response()->json(['msg' =>'Invalid file, Ty again!' , 'status' => false]);
         }
 
-        Excel::import(new UserImport, $request->file, $request->file('user_file'),\Maatwebsite\Excel\Excel::XLSX);
+        Excel::import(new UsersImport, $request->file('user_file'));
 
-        return response()->json(['msg'=>'User(s) successfully imported.','status'=>true]);
-
+        Session::flash('success','User(s) successfully imported.');
+		return redirect('admin/users-list');
     }
 
 

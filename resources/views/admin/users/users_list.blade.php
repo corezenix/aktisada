@@ -37,7 +37,7 @@
                 <div class="card-header p-y-3">
 				<div class="row">
 				<div class="col-lg-9 col-xl-9 col-xxl-9 col-9">
-                  <h6 class="mb-0 pt5">&nbsp;</h6>
+                  <label class="pt5">● To import users from excel file, Download this file <a href="{{url('/').'/'.'user_import_example.xlsx'}}" download><b>user_import_example.xlsx</b></a> and set users into the file and import.</label>
 				  </div>
 				  <div class="col-lg-3 col-xl-3 col-xxl-3 col-3 text-right">
 				     <a href="javascript:;" class="btn btn-gl-primary btn-xs"  data-bs-toggle="offcanvas" data-bs-target="#add-user" ><i class="fa fa-plus"></i>&nbsp;Add User</a>
@@ -45,6 +45,11 @@
 				  </div>
 
 				  </div>
+				  <div class="row">
+					<div class="col-lg-12 col-xl-12 col-xxl-12 col-12">
+				  </div>
+				  </div>
+				  
                 </div>
                 <div class="card-body">
 					<div class="accordion-item accordion-item-bm" >

@@ -17,6 +17,7 @@
         "laravel/ui": "^4.6",
         "maatwebsite/excel": "^3.1",
         "php-open-source-saver/jwt-auth": "^2.7",
+        "psr/simple-cache": "^1.0",
         "stevebauman/location": "^7.4",
         "yajra/laravel-datatables-oracle": "^11.0"
     },

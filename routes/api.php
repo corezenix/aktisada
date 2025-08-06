@@ -26,12 +26,6 @@ Route::middleware('auth:sanctum')->group( function () {
 		Route::get('get-brand-type-material', 'getBrandTypeMaterial')->name('get-brand-type-material');
 		Route::post('add-brand', 'addBrand')->name('add-brand');
 		
-		Route::post('hyundai-verify-otp', 'verifyOtp')->name('hyundai-verify-otp');
-		Route::post('hyundai-scratch-type', 'scratchType')->name('hyundai-scratch-type');
-		Route::post('hyundai-branches', 'getBranches')->name('hyundai-branches');
-		Route::post('hyundai-scratch-customer', 'scratchCustomer')->name('hyundai-scratch-customer');
-		Route::post('hyundai-scratch-card', 'getScratch')->name('hyundai-scratch-card');
-		Route::post('hyundai-slide-images', 'getSlideImages')->name('hyundai-slide-images');
 	});
 	
 	Route::controller(ProductController::class)->group(function()

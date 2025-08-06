@@ -17,7 +17,7 @@
 			<li>
               <a href="{{url('admin/dashboard')}}" title="Dashboard">
                 <div class="parent-icon">
-				<img src="{{asset('assets/images/icons/people-roof.png')}}" style="width:20px;">
+				<i class="lni lni-home" style="width:23px;"></i>
                 </div>
                 <div class="menu-title">Dashboard</div>
               </a>
@@ -25,7 +25,7 @@
 			<li>
               <a href="{{url('admin/category-list')}}" title="Category">
                 <div class="parent-icon">
-				<img src="{{asset('assets/images/icons/users-alt.png')}}" style="width:20px;">
+				<i class="lni lni-folder" style="width:23px;"></i>
                 </div>
                 <div class="menu-title">Category</div>
               </a>
@@ -34,7 +34,7 @@
 			<li>
               <a href="{{url('admin/brands')}}" title="Category">
                 <div class="parent-icon">
-				<img src="{{asset('assets/images/icons/users-alt.png')}}" style="width:20px;">
+					<i class="lni lni-library" style="width:23px;"></i>
                 </div>
                 <div class="menu-title">Brand/Type/Material</div>
               </a>
@@ -43,7 +43,7 @@
 			<li>
               <a href="{{url('admin/slides')}}" title="Slide">
                 <div class="parent-icon">
-				<img src="{{asset('assets/images/icons/users-alt.png')}}" style="width:20px;">
+				<i class="lni lni-image" style="width:23px;"></i>
                 </div>
                 <div class="menu-title">Slide Images</div>
               </a>
@@ -51,7 +51,7 @@
 			<li>
               <a href="{{url('admin/users-list')}}" title="Users">
                 <div class="parent-icon">
-				<img src="{{asset('assets/images/icons/users-alt.png')}}" style="width:20px;">
+				<img src="{{asset('assets/images/icons/users-alt.png')}}" style="width:23px;">
                 </div>
                 <div class="menu-title">Users</div>
               </a>

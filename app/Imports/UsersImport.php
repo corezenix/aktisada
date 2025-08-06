@@ -3,22 +3,26 @@
 namespace App\Imports;
 
 use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
 use App\Models\User;
+use Hash;
 
-class UserImport implements ToModel, WithHeadingRow
+class UsersImport implements ToCollection, WithHeadingRow, SkipsEmptyRows
 {
     /**
     * @param Collection $collection
     */
-    public function modal(array $row)
+    public function collection(Collection $collection)
     {
+       
+	   foreach ($collection as $key => $row) {
 
-		return new User([
+			$data=[
 			'shop_name'=>$row['shop_name'],
 			'contact_person'=>$row['contact_person'],
 			'country_code'=>$row['country_code'],
@@ -34,8 +38,13 @@ class UserImport implements ToModel, WithHeadingRow
 			'state'=>$row['state'],
 			'pincode'=>$row['pincode'],
 			'status'=>1,
-			'password'=>$row['password'],
+			'password'=>Hash::make($row['password']),
 			'created_by'=>1,
-			]);
+			];
+
+            $result=User::create($data);
+        }
+		
+		
     }
 }

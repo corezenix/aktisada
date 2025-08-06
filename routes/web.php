@@ -96,24 +96,6 @@ Route::controller(BrandTypeMaterialController::class)->group(function() {
 	Route::get('/delete-material/{id}', 'deleteMaterial')->name('delete-material');
 });
 
-Route::controller(CampaignGiftController::class)->group(function() {
-	Route::get('/scratch-gifts-list', 'index')->name('scratch-gifts-list');
-	Route::get('/view-campaign-gifts-list', 'viewCampaignGiftListings')->name('view-campaign-gifts-list');
-	Route::get('/deleted-gifts-list', 'deletedGiftsList')->name('deleted-gifts-list');
-	Route::get('/view-deleted-gifts-list', 'viewDeletedGiftListings')->name('view-deleted-gifts-list');
-});
 
-Route::controller(ScratchWebController::class)->group(function() {
-
-	Route::get('/scratch-customers', 'index')->name('scratch-customers');
-	Route::get('/get-scratch-web-customers', 'getWebCustomers')->name('get-scratch-web-customers');
-	Route::get('/get-scratch-app-customers', 'getAppCustomers')->name('get-scratch-app-customers');
-	Route::get('/get-branches/{id}', 'getBranches')->name('get-branches');
-	Route::get('/get-offers/{id}', 'getOffers')->name('get-offers');
-	Route::get('/scratch-web-redeem/{id}', 'redeem')->name('scratch-web-redeem');
-	Route::post('/sractch-web-history-download', 'downloadHistory')->name('sractch-web-history-download');	
-	Route::post('/export-customers-list', 'exportCustomersList')->name('export-customers-list');
-	
-});
 
 });
