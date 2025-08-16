@@ -39,7 +39,7 @@ class ProductController extends Controller
 			  'brand_id'=>'required',
 			  'type_id' =>'required',
 			  'material_id' =>'required',
-			  'item_size' =>'required',
+			  'item_size_id' =>'required',
 			  'quantity' =>'required',
 			  'image_file' =>'required',
         ];
@@ -66,7 +66,7 @@ class ProductController extends Controller
 				  'brand_id'=>$request->brand_id,
 				  'type_id' =>$request->type_id,
 				  'material_id' =>$request->material_id,
-				  'item_size' =>$request->item_size,
+				  'item_size_id' =>$request->item_size_id,
 				  'quantity' =>$request->quantity,
 				  'image_file' =>$fname,
 				  'flush_type'=>$request->flush_type,
@@ -108,11 +108,13 @@ class ProductController extends Controller
 			try
 			{
 				$query=Product::select('products.*','category.pk_category_id','category.category','brands.pk_brand_id','brands.brand_name',
-					'item_types.pk_type_id','item_types.type_name','materials.pk_material_id','materials.material_name','users.pk_user_id','users.shop_name')
+					'item_types.pk_type_id','item_types.type_name','materials.pk_material_id','materials.material_name','item_sizes.pk_size_id','item_sizes.item_size',
+					'users.pk_user_id','users.shop_name')
 					->leftJoin('category','products.category_id','=','category.pk_category_id')
 					->leftJoin('brands','products.brand_id','=','brands.pk_brand_id')
 					->leftJoin('item_types','products.type_id','=','item_types.pk_type_id')
 					->leftJoin('materials','products.material_id','=','materials.pk_material_id')
+					->leftJoin('item_sizes','products.item_size_id','=','item_sizes.pk_size_id')
 					->leftJoin('users','products.user_id','=','users.pk_user_id')
 					->where('products.category_id',$request->category_id);
 					
@@ -131,9 +133,9 @@ class ProductController extends Controller
 						$query->where('products.material_id',$request->material_id);
 					}
 					
-					if($request->has('item_size') && $request->item_size!='')
+					if($request->has('item_size_id') && $request->item_size_id!='')
 					{
-						$query->where('products.item_size','like','%'.$request->item_size.'%');
+						$query->where('products.item_size_id',$request->item_size_id);
 					}
 					
 					if($request->has('user_id') && $request->user_id!='')
@@ -251,7 +253,6 @@ class ProductController extends Controller
 		}
         
     }
-
 
 	/**
     * To update product.
@@ -425,18 +426,11 @@ public function updateProduct(Request $request)
 			return response()->json(['message'=> 'Detild Successfully listed','data'=>$data,'status' => true]);
 
 		}catch(\Exception $e){
-			return response()->json(['message'=>$e->getMessage(), 'status' => 'fail']);
+			return response()->json(['message'=>$e->getMessage(), 'status' => false]);
 		}
         
     }
 	
-	/**
-    * Display a listing of the scratch types.
-    * Method: POST
-	* Parms: user_id (int),campaign_id (int)
-    * @return \Illuminate\Http\Response
-    */	
-	
-	
+
 
 }

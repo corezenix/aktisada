@@ -56,7 +56,7 @@
 <body class="pace-done">
 
   <!--start wrapper-->
-  <div class="wrapper toggled">
+  <div class="wrapper ">
     <!--start top header-->
       <header class="top-header">        
         <nav class="navbar navbar-expand gap-3">
@@ -239,7 +239,7 @@
 
 <script>
 
-$(document).ready(function()
+/*$(document).ready(function()
 {
 	$(".simplebar-wrapper").hover(function()
 		{
@@ -248,7 +248,7 @@ $(document).ready(function()
 		$(".wrapper").removeClass("sidebar-hovered");
 	});
 });
-
+*/
 //
 $("form#changePass").submit(function(e)
 {

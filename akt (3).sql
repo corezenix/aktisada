@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 06, 2025 at 07:46 PM
+-- Generation Time: Aug 13, 2025 at 06:30 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -222,6 +222,32 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `item_sizes`
+--
+
+CREATE TABLE `item_sizes` (
+  `pk_size_id` bigint(20) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `item_size` varchar(100) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `item_sizes`
+--
+
+INSERT INTO `item_sizes` (`pk_size_id`, `category_id`, `item_size`, `created_at`, `updated_at`) VALUES
+(1, 1, 'bbbb1', '2025-08-12 15:45:56', '2025-08-12 15:45:56'),
+(2, 2, 'nnnnnn', '2025-08-12 15:46:03', '2025-08-12 15:46:03'),
+(3, 2, 'nnnnnnn', '2025-08-12 15:46:08', '2025-08-12 15:46:08'),
+(4, 2, 'eeeeeeeeeeee', '2025-08-12 15:46:11', '2025-08-12 15:46:11'),
+(5, 1, 'qqqqqqq', '2025-08-12 15:46:16', '2025-08-12 15:46:16'),
+(6, 1, 'wwwwwwwwww', '2025-08-12 15:46:20', '2025-08-12 15:46:20');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `item_types`
 --
 
@@ -293,7 +319,8 @@ CREATE TABLE `materials` (
 --
 
 INSERT INTO `materials` (`pk_material_id`, `material_name`, `created_at`, `updated_at`) VALUES
-(1, 'mmmmmmmmmmmm', '2025-08-02 19:53:50', '2025-08-02 19:53:50');
+(1, 'mmmmmmmmmmmm', '2025-08-02 19:53:50', '2025-08-02 19:53:50'),
+(2, 'yyyyyyyyyyyyyyyyyyyyyyyy', '2025-08-12 15:16:42', '2025-08-12 15:16:42');
 
 -- --------------------------------------------------------
 
@@ -536,7 +563,7 @@ CREATE TABLE `products` (
   `brand_id` bigint(20) NOT NULL,
   `type_id` bigint(20) NOT NULL,
   `material_id` bigint(20) NOT NULL,
-  `item_size` varchar(100) NOT NULL,
+  `item_size_id` bigint(20) DEFAULT NULL,
   `quantity` int(11) NOT NULL,
   `flush_type` varchar(100) DEFAULT NULL,
   `description` text DEFAULT NULL,
@@ -550,9 +577,9 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`pk_product_id`, `product_title`, `category_id`, `user_id`, `brand_id`, `type_id`, `material_id`, `item_size`, `quantity`, `flush_type`, `description`, `image_file`, `status`, `created_at`, `updated_at`) VALUES
-(2, 'This is testing product', 2, 1, 1, 2, 2, '10x15x5 inch', 5, NULL, NULL, 'products/681754170863.png', NULL, '2025-08-02 19:09:41', '2025-08-02 21:41:03'),
-(3, 'Testing Product 3', 2, 1, 1, 2, 2, '10x15x5 inch', 5, NULL, NULL, 'products/551754161845.png', 1, '2025-08-02 19:10:45', '2025-08-02 19:10:45');
+INSERT INTO `products` (`pk_product_id`, `product_title`, `category_id`, `user_id`, `brand_id`, `type_id`, `material_id`, `item_size_id`, `quantity`, `flush_type`, `description`, `image_file`, `status`, `created_at`, `updated_at`) VALUES
+(2, 'This is testing product', 2, 1, 1, 2, 2, 10, 5, NULL, NULL, 'products/681754170863.png', NULL, '2025-08-02 19:09:41', '2025-08-02 21:41:03'),
+(3, 'Testing Product 3', 2, 1, 1, 2, 2, 10, 5, NULL, NULL, 'products/551754161845.png', 1, '2025-08-02 19:10:45', '2025-08-02 19:10:45');
 
 -- --------------------------------------------------------
 
@@ -595,7 +622,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('1Xpsg5Bk7qXzqgvhChX3UQJ5zE9mN3tIH25jYIQU', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZUpsaklvM1pJMXhPZ3lvazA3amZzNTlKVTQxSXRWSHB2MEMzcEJyNCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozODoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2FkbWluL3VzZXJzLWxpc3QiO319', 1754502302);
+('tb3ZfBxLKzMLHyKrN7xHRr6IU4uO5sDG7fRyuqdl', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiekJ2NlJoNlo4eVpGRkhLWXhrdVpldmoxOGZjc3ZwME1naVoyOUwzYSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozNjoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2FkbWluL3Byb2R1Y3RzIjt9fQ==', 1755102526);
 
 -- --------------------------------------------------------
 
@@ -3934,6 +3961,12 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
+-- Indexes for table `item_sizes`
+--
+ALTER TABLE `item_sizes`
+  ADD PRIMARY KEY (`pk_size_id`);
+
+--
 -- Indexes for table `item_types`
 --
 ALTER TABLE `item_types`
@@ -4055,6 +4088,12 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `item_sizes`
+--
+ALTER TABLE `item_sizes`
+  MODIFY `pk_size_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `item_types`
 --
 ALTER TABLE `item_types`
@@ -4070,7 +4109,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `materials`
 --
 ALTER TABLE `materials`
-  MODIFY `pk_material_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `pk_material_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `migrations`

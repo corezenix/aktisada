@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->group( function () {
 		Route::get('get-categories', 'getCategories')->name('get-categories');
 		Route::get('get-brand-type-material', 'getBrandTypeMaterial')->name('get-brand-type-material');
 		Route::post('add-brand', 'addBrand')->name('add-brand');
+		Route::post('get-filters', 'getFilters')->name('get-filters');
 		
 	});
 	

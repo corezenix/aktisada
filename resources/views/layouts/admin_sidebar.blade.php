@@ -36,7 +36,25 @@
                 <div class="parent-icon">
 					<i class="lni lni-library" style="width:23px;"></i>
                 </div>
-                <div class="menu-title">Brand/Type/Material</div>
+                <div class="menu-title">Brands</div>
+              </a>
+            </li>
+			
+			<li>
+              <a href="{{url('admin/item-types')}}" title="Category">
+                <div class="parent-icon">
+					<i class="lni lni-library" style="width:23px;"></i>
+                </div>
+                <div class="menu-title">Item Type</div>
+              </a>
+            </li>
+			
+			<li>
+              <a href="{{url('admin/material-types')}}" title="Category">
+                <div class="parent-icon">
+					<i class="lni lni-library" style="width:23px;"></i>
+                </div>
+                <div class="menu-title">Material Types</div>
               </a>
             </li>
 			

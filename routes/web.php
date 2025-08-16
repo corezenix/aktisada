@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\CommonController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SlideImageController;
 use App\Http\Controllers\Admin\BrandTypeMaterialController;
+use App\Http\Controllers\Admin\ProductController;
 
 use App\Http\Controllers\Auth\LoginController;
 
@@ -87,14 +88,31 @@ Route::controller(BrandTypeMaterialController::class)->group(function() {
 	Route::get('/get-brands', 'getBrands')->name('get-brands');
 	Route::get('/delete-brand/{id}', 'destroy')->name('delete-brand');
 	
+	Route::get('/item-types', 'itemType')->name('item-types');
 	Route::post('/save-type', 'saveItemType')->name('save-type');
 	Route::get('/get-item-types', 'getItemTypes')->name('get-item-types');
 	Route::get('/delete-type/{id}', 'deleteType')->name('delete-type');
 	
+	Route::get('/material-types', 'materialType')->name('material-types');
 	Route::post('/save-material', 'saveMaterial')->name('save-material');
 	Route::get('/get-materials', 'getMaterials')->name('get-materials');
 	Route::get('/delete-material/{id}', 'deleteMaterial')->name('delete-material');
+	
+	Route::get('/item-sizes', 'itemSize')->name('item-sizes');
+	Route::post('/save-item-size', 'saveItemSize')->name('save-item-size');
+	Route::get('/get-item-sizes', 'getItemSizes')->name('get-item-sizes');
+	Route::get('/delete-item-size/{id}', 'deleteItemSize')->name('delete-item-sizes');
 });
+
+
+Route::controller(ProductController::class)->group(function() {
+	Route::get('/products', 'index')->name('products');
+	//Route::post('/save-slide', 'store')->name('save-slide');
+	Route::get('/get-products-list', 'getProductsList')->name('get-products-list');
+	//Route::get('/delete-slide/{id}', 'destroy')->name('delete-slide');
+	//Route::get('/act-deact-slide-image/{op}/{id}', 'activateDeactivate')->name('act-deact-slide-image');	
+});
+
 
 
 

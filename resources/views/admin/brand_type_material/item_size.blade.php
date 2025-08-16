@@ -15,8 +15,8 @@
 }						
 </style>
 
-<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-              <div class="breadcrumb-title pe-3">Slide Images</div>
+	<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+              <div class="breadcrumb-title pe-3">Item Types</div>
  
              <!-- <div class="ms-auto">
                 <div class="btn-group">
@@ -30,14 +30,18 @@
                   </div>
                 </div>
               </div>  -->
-            </div>
+    </div>
             <!--end breadcrumb-->
+
+ <div class="row">
+
+			<div class="col-lg-4 col-xl-4 col-xxl-4">
 
               <div class="card">
                 <div class="card-header p-y-3">
 				<div class="row">
 				<div class="col-lg-9 col-xl-9 col-xxl-9 col-9">
-				   <h6 class="mb-0 pt5 mt-2"> &nbsp;</h6>
+				   <h6 class="mb-0 pt5 mt-2">Add Item sizes</h6>
 				  </div>
 				  <div class="col-lg-3 col-xl-3 col-xxl-3 col-3 text-right">
 				     <!--<a href="javascript:;" class="btn btn-gl-primary" ><i class="lni lni-upload"></i>&nbsp;Export</a>-->
@@ -46,54 +50,72 @@
                 </div>
                 <div class="card-body">
 
-                   <div class="row mt-3">
-                     <div class="col-12 col-lg-12 d-flex">
                       <div class="card  shadow-none w-100 mt-2">
 					  
-					  <div class="row">
-					  <div class="col-lg-5 col-xl-5 col-xxl-5">
-					  
-							  <h6 class="mb-3"> Add Image</h6>
-							  
 							<!--  <form method="POST" id="SaveAdsImage" action="{{url('users/save-ads-image')}}"enctype="multipart/form-data">--->
 							
-							<form id="SaveAdsImage" enctype="multipart/form-data">
+							<form id="AddItemSize" enctype="multipart/form-data">
 								@csrf
 							  <div class="mb-2 row">
-																  
-									<div class="col-lg-11 col-xl-11 col-xxl-11 mt-2">
-										<label for="example-text-input" class="col-form-label">Select Image ((Max:500mb, Size 450x350) </label>
-										<input class="form-control" type="file" name="image" id="image" required>
+							  
+										<div class="col-lg-11 col-xl-11 col-xxl-11 mt-2">
+										<label for="example-text-input" class="col-form-label">Category </label>
+										<select class="form-control"  name="category" id="category" required>
+										<option value="">select</option>
+										@foreach($cat as $row)
+										<option value="{{$row->pk_category_id}}">{{$row->category}}</option>
+										@endforeach
+										</select>
 										</div>
-									<div class="col-lg-11 col-xl-11 col-xxl-11">
-									<img class="mb-2 mt-2" id="img_output" src="" style="width:150px;">
-									</div>
-									
-							
+																  
+										<div class="col-lg-11 col-xl-11 col-xxl-11 mt-2">
+										<label for="example-text-input" class="col-form-label">Item size </label>
+										<input class="form-control" type="text" name="item_size" id="item_size" required>
+										</div>
+																
 									<div class="col-lg-11 col-xl-11 col-xxl-11 mt-3">
-									<button type="submit" id="btnSave" class="btn btn-primary">Save Image </button>
+									<button type="submit" id="btnTypeSave" class="btn btn-primary">Submit </button>
 									</div>
 							  </div>
 							  </form>
-					  </div>
-					  
-					  <div class="col-lg-7 col-xl-7 col-xxl-7">
+		  
+						  </div>
+						  </div>
+                       <!-- </div>-->
+                   </div><!--card end-->
+ 			</div>
+			
+			<div class="col-lg-8 col-xl-8 col-xxl-8">
 
+              <div class="card">
+                <div class="card-header p-y-3">
+				<div class="row">
+				<div class="col-lg-9 col-xl-9 col-xxl-9 col-9">
+				   <h6 class="mb-0 pt5 mt-2">Item Types</h6>
+				  </div>
+				  <div class="col-lg-3 col-xl-3 col-xxl-3 col-3 text-right">
+				     <!--<a href="javascript:;" class="btn btn-gl-primary" ><i class="lni lni-upload"></i>&nbsp;Export</a>-->
+				  </div>
+				  </div>
+                </div>
+                <div class="card-body">
+
+                      <div class="card  shadow-none w-100 mt-2">
+					  
                         <!--<div class="card-body">-->
-                          <div class="table-responsive">
+                          <div class="mt-3 table-responsive">
 	
-                             <table id="datatable" class="table align-middle" style="width:100% !important;" >
+                             <table id="datatable1" class="table align-middle" style="width:100% !important;" >
                                <thead class="thead-semi-dark">
 								<tr>
-									<th>Sl No</th>
-									<th>Image</th>
-									<th>Status</th>
-									<th>Created_by</th>
-									<th>Action</th>
+									<th style="width:60px;">Sl No</th>
+									<th>Category</th>
+									<th>Size</th>
+									<th style="width:60px;">Action</th>
 								</tr>
                                </thead>
                                <tbody>
-                                  
+                                 
                                </tbody>
                              </table>
                           </div>
@@ -101,12 +123,10 @@
 						  </div>
 						  </div>
                        <!-- </div>-->
-                      </div> 
-                    </div>
                    </div><!--end row-->
-                </div>
-              </div>
-			  
+				   </div>
+
+  </div>
 		
 @push('scripts')
 
@@ -128,7 +148,8 @@
 BASE_URL ={!! json_encode(url('/')) !!}
 
 
-var table = $('#datatable').DataTable({
+
+var table = $('#datatable1').DataTable({
         processing: true,
         serverSide: true,
 		stateSave:true,
@@ -141,7 +162,7 @@ var table = $('#datatable').DataTable({
 				
 		ajax:
 		{
-			url:BASE_URL+"/admin/get-slide-images",
+			url:BASE_URL+"/admin/get-item-sizes",
 			data: function (data) 
 		    {
                //data.search = $('input[type="search"]').val();
@@ -149,50 +170,20 @@ var table = $('#datatable').DataTable({
         },
 		columns: [
 		   {"data": 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false  },
-		   {data: 'image', name: 'image'},
-		   {data: 'status', name: 'status'},
-		   {data: 'created_by', name: 'created_by'},
+		   {data: 'category', name: 'category'},
+		   {data: 'item_size', name: 'item_size'},
 		   {data: 'action', name: 'action', orderable: false, searchable: false}
 	   ],
 
 });
 
 
-image.onchange = evt => {
-  const [file] = image.files
+//----------------------------------------------------------------------------
 
-	var size=file.size;
-	if(size>524288)
-	{
-		alert("Image size too large. Maximum 500Kb only");
-		$(this).val('');
-	}
-	else
-	{
-
-        var allowedExtensions="";
-	    allowedExtensions = /(\.jpg|\.jpeg|\.jpe|\.png)$/i; 
-	    var filePath = file.name;
-		console.log(file);
-	
-		if (!allowedExtensions.exec(filePath)) { 
-			alert('Invalid file type, Try again.'); 
-			$("#ads_image").val('');
-			$("#img_output").prop('src','');
-		}
-		else
-		{
-			if (file) {
-				img_output.src = URL.createObjectURL(file)
-			  }
-		}  
-	}
-}
-
- $(document).on('submit', '#SaveAdsImage', function(event) {
+ $(document).on('submit', '#AddItemSize', function(event) {
            event.preventDefault();
 			$.ajax({
-                    url: BASE_URL + '/admin/save-slide',
+                    url: BASE_URL + '/admin/save-item-size',
                     type: 'POST',
                     dataType: 'json',
                     data:  new FormData(this),
@@ -202,8 +193,8 @@ image.onchange = evt => {
                 .done(function(res) {
                     if(res.status == true){
                     toastr.success(res.msg);
-					 $('#datatable').DataTable().ajax.reload(null, false);
-					 ("#SaveAdsImage")[0].reset();
+					 $('#datatable1').DataTable().ajax.reload(null, false);
+					 $("#item_size").val("");
 					
                 }else{
                    toastr.error(res.msg);
@@ -216,11 +207,11 @@ image.onchange = evt => {
        });
 
 
-$('#datatable tbody').on('click','.slide-delete',function()
+$('#datatable1 tbody').on('click','.size-delete',function()
 {
 	Swal.fire({
 	  //title: "Are you sure?",
-	  text: "Are you sure, You want to delete this slide?",
+	  text: "Are you sure, You want to delete this item?",
 	  icon: "question",
 	  showCancelButton: true,
 	  confirmButtonColor: "#3085d6",
@@ -232,7 +223,7 @@ $('#datatable tbody').on('click','.slide-delete',function()
 		var tid=$(this).attr('id');
 		
 		  $.ajax({
-          url: "{{url('admin/delete-slide')}}"+'/'+tid,
+          url: "{{url('admin/delete-item-size')}}"+'/'+tid,
           type: 'get',
 		  dataType: 'json',
           //data:{'track_id':tid},
@@ -241,7 +232,7 @@ $('#datatable tbody').on('click','.slide-delete',function()
 			if(res.status==1)
 			{
 				 toastr.success(res.msg);
-				 $("#datatable").DataTable().ajax.reload(null,false);
+				 $("#datatable1").DataTable().ajax.reload(null,false);
 			}
 			else
 			{
@@ -254,55 +245,6 @@ $('#datatable tbody').on('click','.slide-delete',function()
 	});
 
 });
-
-
-$("#datatable tbody").on('click','.btn-act-deact',function()
-{
-	var opt=$(this).data('option');
-	var id=$(this).attr('id');
-	
-	var opt_text=(opt==1)?"activate":"deactivate";
-	optText=opt_text.charAt(0).toUpperCase()+opt_text.slice(1);
-	
-	Swal.fire({
-	  title: optText+"?",
-	  text: "You want to "+opt_text+" this link?",
-	  icon: "question",
-	  showCancelButton: true,
-	  confirmButtonColor: "#3085d6",
-	  cancelButtonColor: "#d33",
-	  confirmButtonText: "Yes, "+opt_text+" it!"
-	}).then((result) => {
-	  if (result.isConfirmed) {
-		
-		
-		  jQuery.ajax({
-			type: "get",
-			url: BASE_URL+"/admin/act-deact-slide-image/"+opt+"/"+id,
-			dataType: 'json',
-			//data: {vid: vid},
-			success: function(res)
-			{
-			   if(res.status==true)
-			   {
-				   toastr.success(res.msg);
-				   $('#datatable').DataTable().ajax.reload(null, false);
-			   }
-			   else
-			   {
-				 toastr.error(res.msg); 
-			   }
-			}
-		  });
-	  }
-	});
-
-});
-
-
-
-
-
 
 
 </script>

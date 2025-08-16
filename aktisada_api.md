@@ -1,6 +1,6 @@
 **1. login
 
-curl --location 'http://127.0.0.1:8000/api/v1/login' \
+curl --location 'https://app.aktisada.com/api/v1/login' \
 --header 'Accept: application/json' \
 --form 'mobile="1234567899"' \
 --form 'password="123456"'
@@ -38,7 +38,7 @@ curl --location 'http://127.0.0.1:8000/api/v1/login' \
 
 **2. get-slides
 
-curl --location 'http://127.0.0.1:8000/api/v1/get-slides' \
+curl --location 'https://app.aktisada.com/api/v1/get-slides' \
 --header 'Accept: application/json' \
 --header 'Authorization: Bearer 178|YXddbfAqpWc5uXCGre1fPTAUv9EibA6UTiYK7nh533463fe2'
 
@@ -54,7 +54,7 @@ curl --location 'http://127.0.0.1:8000/api/v1/get-slides' \
             "created_by": 1,
             "created_at": "2025-08-02T18:26:46.000000Z",
             "updated_at": "2025-08-02T18:38:09.000000Z",
-            "image_path": "http://127.0.0.1:8000/uploads/slides/ZvH5B-062646-cyc.png"
+            "image_path": "https://app.aktisada.com/uploads/slides/ZvH5B-062646-cyc.png"
         }
     ],
     "status": true
@@ -63,7 +63,7 @@ curl --location 'http://127.0.0.1:8000/api/v1/get-slides' \
 
 **3 get-categories
 
-curl --location 'http://127.0.0.1:8000/api/v1/get-categories' \
+curl --location 'https://app.aktisada.com/api/v1/get-categories' \
 --header 'Accept: application/json' \
 --header 'Authorization: Bearer 178|YXddbfAqpWc5uXCGre1fPTAUv9EibA6UTiYK7nh533463fe2'
 
@@ -81,7 +81,7 @@ curl --location 'http://127.0.0.1:8000/api/v1/get-categories' \
                 "created_by": 1,
                 "created_at": "2025-08-02T05:57:34.000000Z",
                 "updated_at": "2025-08-02T07:13:58.000000Z",
-                "image_path": "http://127.0.0.1:8000/uploads/category/261754118628.png"
+                "image_path": "https://app.aktisada.com/uploads/category/261754118628.png"
             },
             {
                 "pk_category_id": 3,
@@ -91,7 +91,7 @@ curl --location 'http://127.0.0.1:8000/api/v1/get-categories' \
                 "created_by": 1,
                 "created_at": "2025-08-02T05:57:43.000000Z",
                 "updated_at": "2025-08-02T07:10:19.000000Z",
-                "image_path": "http://127.0.0.1:8000/uploads/category/441754118619.png"
+                "image_path": "https://app.aktisada.com/uploads/category/441754118619.png"
             }
         ]
     },
@@ -104,7 +104,7 @@ curl --location 'http://127.0.0.1:8000/api/v1/get-categories' \
 **4. get-brand-type-material:
 
 
-curl --location 'http://127.0.0.1:8000/api/v1/get-brand-type-material' \
+curl --location 'https://app.aktisada.com/api/v1/get-brand-type-material' \
 --header 'Accept: application/json' \
 --header 'Authorization: Bearer 178|YXddbfAqpWc5uXCGre1fPTAUv9EibA6UTiYK7nh533463fe2'
 
@@ -249,7 +249,7 @@ curl --location 'http://127.0.0.1:8000/api/v1/get-brand-type-material' \
 
 **5. add-product
 
-curl --location 'http://127.0.0.1:8000/api/v1/add-product' \
+curl --location 'https://app.aktisada.com/api/v1/add-product' \
 --header 'Accept: application/ecmascript' \
 --header 'Authorization: Bearer 178|YXddbfAqpWc5uXCGre1fPTAUv9EibA6UTiYK7nh533463fe2' \
 --form 'product_title="Testing Product 3"' \
@@ -291,7 +291,7 @@ curl --location 'http://127.0.0.1:8000/api/v1/add-product' \
 
 **6. add branch
 
-curl --location 'http://127.0.0.1:8000/api/v1/add-brand' \
+curl --location 'https://app.aktisada.com/api/v1/add-brand' \
 --header 'Accept: application/json' \
 --header 'Authorization: Bearer 178|YXddbfAqpWc5uXCGre1fPTAUv9EibA6UTiYK7nh533463fe2' \
 --form 'brand_name="Brand-2"'
@@ -312,7 +312,7 @@ curl --location 'http://127.0.0.1:8000/api/v1/add-brand' \
 
 **7. products-list 
 
-curl --location 'http://127.0.0.1:8000/api/v1/product-list' \
+curl --location 'https://app.aktisada.com/api/v1/product-list' \
 --header 'Accept: application/json' \
 --header 'Authorization: Bearer 178|YXddbfAqpWc5uXCGre1fPTAUv9EibA6UTiYK7nh533463fe2' \
 --form 'category_id="1"' \
@@ -360,7 +360,7 @@ curl --location 'http://127.0.0.1:8000/api/v1/product-list' \
 
 **8. delete product
 
-curl --location 'http://127.0.0.1:8000/api/v1/delete-product' \
+curl --location 'https://app.aktisada.com/api/v1/delete-product' \
 --header 'Accept: application/json' \
 --header 'Authorization: ••••••' \
 --form 'product_id="1"'
@@ -384,7 +384,7 @@ curl --location 'http://127.0.0.1:8000/api/v1/delete-product' \
 
 **9 edit-product
 
-curl --location 'http://127.0.0.1:8000/api/v1/edit-product' \
+curl --location 'https://app.aktisada.com/api/v1/edit-product' \
 --header 'Accept: application/json' \
 --header 'Authorization: Bearer 178|YXddbfAqpWc5uXCGre1fPTAUv9EibA6UTiYK7nh533463fe2' \
 --form 'product_id="2"'
@@ -409,7 +409,7 @@ curl --location 'http://127.0.0.1:8000/api/v1/edit-product' \
             "image_file": "products/121754161781.png",
             "status": null,
             "created_at": "2025-08-02T19:09:41.000000Z",
-            "image_path": "http://127.0.0.1:8000/uploads/products/121754161781.png"
+            "image_path": "https://app.aktisada.com/uploads/products/121754161781.png"
         }
     ],
     "status": true
@@ -418,7 +418,7 @@ curl --location 'http://127.0.0.1:8000/api/v1/edit-product' \
 
 **10 Update-product
 
-curl --location 'http://127.0.0.1:8000/api/v1/update-product' \
+curl --location 'https://app.aktisada.com/api/v1/update-product' \
 --header 'Accept: application/ecmascript' \
 --header 'Authorization: Bearer 178|YXddbfAqpWc5uXCGre1fPTAUv9EibA6UTiYK7nh533463fe2' \
 --form 'product_id="2"' \
@@ -460,7 +460,7 @@ curl --location 'http://127.0.0.1:8000/api/v1/update-product' \
 **11 get product details
 
 
-curl --location 'http://127.0.0.1:8000/api/v1/product-details' \
+curl --location 'https://app.aktisada.com/api/v1/product-details' \
 --header 'Accept: application/json' \
 --header 'Authorization: ••••••' \
 --form 'product_id="2"'
@@ -485,7 +485,7 @@ curl --location 'http://127.0.0.1:8000/api/v1/product-details' \
             "image_file": "products/681754170863.png",
             "status": null,
             "created_at": "2025-08-02T19:09:41.000000Z",
-            "image_path": "http://127.0.0.1:8000/uploads/products/681754170863.png",
+            "image_path": "https://app.aktisada.com/uploads/products/681754170863.png",
             "user": {
                 "pk_user_id": 1,
                 "shop_name": "Shaji Enter prices",

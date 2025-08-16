@@ -14,6 +14,8 @@ use App\Models\User;
 use App\Models\Brand;
 use App\Models\ItemType;
 use App\Models\Material;
+use App\Models\ItemSize;
+use App\Models\Category;
 
 use DB;
 use Auth;
@@ -31,8 +33,25 @@ class BrandTypeMaterialController extends Controller
      */
     public function index()
     {
-        return view('admin.brand_type_material.brand_type_material');
+        return view('admin.brand_type_material.brands');
     }
+	
+	 public function itemType()
+    {
+        return view('admin.brand_type_material.item_type');
+    }
+	
+	 public function materialType()
+    {
+        return view('admin.brand_type_material.material_type');
+    }
+	
+	 public function itemSize()
+    {
+		$cat=Category::all();       
+	   return view('admin.brand_type_material.item_size',compact('cat'));
+    }
+	
 	
     public function getBrands()
     {
@@ -272,9 +291,91 @@ public function getMaterials()
     }
 
 
+//--------------------------------------------------------------------------------------------
 
 
 
+public function getItemSizes()
+    {
+		
+      $vendorId=User::getVendorId();
+	  
+      $dat = ItemSize::select('item_sizes.*','category.pk_category_id','category.category')
+			->leftJoin('category','item_sizes.category_id','=','category.pk_category_id')->orderby('pk_size_id','Desc')->get();
+        
+        return Datatables::of($dat)
+        ->addIndexColumn()
+        
+        ->addColumn('action', function ($row) {
+
+				$action='<a href="javascript:;" class="size-delete" id="'.$row->pk_size_id.'"><i class="lni lni-trash"></i></a>';
+				return $action;
+        })
+        ->rawColumns(['action'])
+        ->toJson(true);
+    }
+		
+
+    public function saveItemSize(Request $request)
+    {
+      	$input = $request->all();
+      	$userId=Auth::user()->pk_user_id;
+        $validator=Validator::make($input, ['item_size'=>'required','category'=>'required'],[]);
+        if ($validator->fails()) 
+        {
+			return response()->json(['msg'=>$validator->messages(), 'status' => false]);
+		}
+		else
+		{
+       		try
+            {
+					$its = new ItemSize();
+					$its->category_id = $request->category;
+					$its->item_size = $request->item_size;
+					$flag=$its->save();
+					
+					if($flag)
+					{
+						 return response()->json(['msg'=>'Item size successfully added.', 'status'=>true]);
+					}
+					else
+					{
+						 return response()->json(['msg'=>'Something went wrong, please try again later.', 'status'=>false]);
+					}
+
+            }
+            catch(\Exception $e)
+            {
+                return response()->json(['msg'=>$e->getMessage(), 'status' => false]);
+            }
+        } 
+
+    }
+
+
+    public function deleteItemSize($id)
+    {
+       try 
+       {
+            $sld = ItemSize::find($id);
+                if ($sld) {
+                    $sld->delete();
+                    return response(['msg' => 'Item size has been deleted.', 'status' => true]);
+				}
+                else
+                {
+                    return response(['msg' => 'Something Went Wrong', 'status' => false]);
+                }
+            
+        }
+        catch (\Exception $ex) {
+          return response(['msg' => 'Something Went Wrong', 'status' => false]);
+
+            }
+    }
+
+
+//--------------------------------------------------------------------------------------------
 
 
 
