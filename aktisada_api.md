@@ -113,11 +113,11 @@ curl --location 'https://app.aktisada.com/api/v1/get-brand-type-material' \
 **Response:
 
 {
-    "message": "Detild Successfully listed",
+    "message": "Details Successfully listed",
     "data": {
         "categories": [
             {
-                "pk_category_id": 2,
+                "pk_category_id": 1,
                 "category": "bbbbbbbbbbbbbb",
                 "image_file": "category/261754118628.png",
                 "status": 1,
@@ -126,7 +126,7 @@ curl --location 'https://app.aktisada.com/api/v1/get-brand-type-material' \
                 "updated_at": "2025-08-02T07:13:58.000000Z"
             },
             {
-                "pk_category_id": 3,
+                "pk_category_id": 2,
                 "category": "mmmmmmmm",
                 "image_file": "category/441754118619.png",
                 "status": 1,
@@ -137,33 +137,45 @@ curl --location 'https://app.aktisada.com/api/v1/get-brand-type-material' \
         ],
         "brands": [
             {
-                "pk_brand_id": 2,
+                "pk_brand_id": 1,
                 "brand_name": "bbbbbbbbbb",
                 "created_at": "2025-08-02T19:23:17.000000Z",
                 "updated_at": "2025-08-02T19:23:17.000000Z"
             },
             {
-                "pk_brand_id": 3,
+                "pk_brand_id": 2,
                 "brand_name": "yyyyyyyyyyyy",
                 "created_at": "2025-08-02T19:23:26.000000Z",
                 "updated_at": "2025-08-02T19:23:26.000000Z"
             },
             {
-                "pk_brand_id": 4,
+                "pk_brand_id": 3,
                 "brand_name": "wwwwwwwwwwwwwwwwwww",
                 "created_at": "2025-08-02T19:23:30.000000Z",
                 "updated_at": "2025-08-02T19:23:30.000000Z"
+            },
+            {
+                "pk_brand_id": 4,
+                "brand_name": "brand-1",
+                "created_at": "2025-08-02T19:55:33.000000Z",
+                "updated_at": "2025-08-02T19:55:33.000000Z"
+            },
+            {
+                "pk_brand_id": 5,
+                "brand_name": "Brand-2",
+                "created_at": "2025-08-02T19:57:20.000000Z",
+                "updated_at": "2025-08-02T19:57:20.000000Z"
             }
         ],
         "types": [
             {
-                "pk_type_id": 2,
+                "pk_type_id": 1,
                 "type_name": "mmmmmmmmmm",
                 "created_at": "2025-08-02T19:49:25.000000Z",
                 "updated_at": "2025-08-02T19:49:25.000000Z"
             },
             {
-                "pk_type_id": 3,
+                "pk_type_id": 2,
                 "type_name": "kkkkkkkkkkkk",
                 "created_at": "2025-08-02T19:49:31.000000Z",
                 "updated_at": "2025-08-02T19:49:31.000000Z"
@@ -179,7 +191,7 @@ curl --location 'https://app.aktisada.com/api/v1/get-brand-type-material' \
         ],
         "shops": [
             {
-                "id": 2,
+                "pk_user_id": 2,
                 "shop_name": "All kerala tiles and sanitarywares",
                 "contact_person": "shaji",
                 "country_code": 91,
@@ -200,7 +212,7 @@ curl --location 'https://app.aktisada.com/api/v1/get-brand-type-material' \
                 "updated_at": "2025-08-02T09:23:59.000000Z"
             },
             {
-                "id": 3,
+                "pk_user_id": 3,
                 "shop_name": "test2",
                 "contact_person": "shaji",
                 "country_code": 91,
@@ -221,7 +233,7 @@ curl --location 'https://app.aktisada.com/api/v1/get-brand-type-material' \
                 "updated_at": "2025-08-02T09:23:59.000000Z"
             },
             {
-                "id": 4,
+                "pk_user_id": 4,
                 "shop_name": "test3",
                 "contact_person": "shaji",
                 "country_code": 91,
@@ -239,12 +251,37 @@ curl --location 'https://app.aktisada.com/api/v1/get-brand-type-material' \
                 "status": 1,
                 "created_by": 2,
                 "created_at": "2025-08-02T09:23:59.000000Z",
-                "updated_at": "2025-08-02T04:43:06.000000Z"
+                "updated_at": "2025-08-04T16:41:13.000000Z"
+            },
+            {
+                "pk_user_id": 5,
+                "shop_name": "ABC",
+                "contact_person": "ASD",
+                "country_code": 91,
+                "mobile": "1234567888",
+                "user_mobile": "911234567888",
+                "whatsapp_no": "1234567888",
+                "email": "abc@gmail.com",
+                "role_id": 2,
+                "address": "aaa",
+                "location": "bbb",
+                "city": "nnnn",
+                "district": "www",
+                "state": "kkkk",
+                "pincode": null,
+                "status": 1,
+                "created_by": 1,
+                "created_at": "2025-08-06T17:10:13.000000Z",
+                "updated_at": "2025-08-06T17:10:13.000000Z"
             }
         ]
     },
     "status": true
 }
+
+
+
+
 
 
 **5. add-product

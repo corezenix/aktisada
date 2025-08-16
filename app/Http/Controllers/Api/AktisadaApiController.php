@@ -17,6 +17,7 @@ use App\Models\User;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\ItemType;
+use App\Models\ItemSize;
 use App\Models\Material;
 
 use App\Models\Settings;
