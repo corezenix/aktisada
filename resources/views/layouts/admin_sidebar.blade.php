@@ -32,7 +32,7 @@
             </li>
 			
 			<li>
-              <a href="{{url('admin/brands')}}" title="Category">
+              <a href="{{url('admin/brands')}}" title="Brands">
                 <div class="parent-icon">
 					<i class="lni lni-library" style="width:23px;"></i>
                 </div>
@@ -41,7 +41,7 @@
             </li>
 			
 			<li>
-              <a href="{{url('admin/item-types')}}" title="Category">
+              <a href="{{url('admin/item-types')}}" title="Item Type">
                 <div class="parent-icon">
 					<i class="lni lni-library" style="width:23px;"></i>
                 </div>
@@ -50,7 +50,16 @@
             </li>
 			
 			<li>
-              <a href="{{url('admin/material-types')}}" title="Category">
+              <a href="{{url('admin/item-sizes')}}" title="Sizes">
+                <div class="parent-icon">
+					<i class="lni lni-library" style="width:23px;"></i>
+                </div>
+                <div class="menu-title">Item sizes</div>
+              </a>
+            </li>
+			
+			<li>
+              <a href="{{url('admin/material-types')}}" title="Material Types">
                 <div class="parent-icon">
 					<i class="lni lni-library" style="width:23px;"></i>
                 </div>
