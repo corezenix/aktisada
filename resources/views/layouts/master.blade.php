@@ -43,7 +43,7 @@
 <link href="{{ url('assets/intl-tel-input17.0.3/intlTelInput.min.css')}}" rel="stylesheet"/>
 <link href="{{ url('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet"/>
 
-  <title>GL-Scratch</title>
+  <title>AKTISADA</title>
 </head>
 <style>
 /*pre-loader style*/
