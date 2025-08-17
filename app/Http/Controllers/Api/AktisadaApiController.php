@@ -174,7 +174,7 @@ class AktisadaApiController extends Controller
         }
 		else{
 			return response()->json(['message'=>"Category missing..!", 'status' => false]);
-		}}
+		}
 		
     }
 	
