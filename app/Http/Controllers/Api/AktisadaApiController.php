@@ -154,9 +154,9 @@ class AktisadaApiController extends Controller
 			{
 				//$category = Category::where('status',1)->orderBy('pk_category_id','ASC')->get();
 				$brands = Brand::orderBy('pk_brand_id','ASC')->get();
-				$types = ItemType::where('caregory_id',$request->category_id)->orderBy('pk_type_id','ASC')->get();
-				$sizes = ItemSize::where('caregory_id',$request->category_id)->orderBy('pk_size_id','ASC')->get();
-				$material = Material::where('caregory_id',$request->category_id)->orderBy('pk_material_id','ASC')->get();
+				$types = ItemType::where('category_id',$request->category_id)->orderBy('pk_type_id','ASC')->get();
+				$sizes = ItemSize::where('category_id',$request->category_id)->orderBy('pk_size_id','ASC')->get();
+				$material = Material::where('category_id',$request->category_id)->orderBy('pk_material_id','ASC')->get();
 				$users = User::where('status',1)->where('role_id',2)->orderBy('pk_user_id','ASC')->get();
 				
 				//$data['categories']=$category;
@@ -198,8 +198,8 @@ class AktisadaApiController extends Controller
 			{
 				$category = Category::where('status',1)->orderBy('pk_category_id','ASC')->get();
 				$brands = Brand::orderBy('pk_brand_id','ASC')->get();
-				$types = ItemType::where('caregory_id',$request->category_id)->orderBy('pk_type_id','ASC')->get();
-				$material = Material::where('caregory_id',$request->category_id)->orderBy('pk_material_id','ASC')->get();
+				$types = ItemType::where('category_id',$request->category_id)->orderBy('pk_type_id','ASC')->get();
+				$material = Material::where('category_id',$request->category_id)->orderBy('pk_material_id','ASC')->get();
 				$users = User::where('status',1)->where('role_id',2)->orderBy('pk_user_id','ASC')->get();
 				$sizes = ItemSize::where('category_id',$request->category_id)->orderBy('pk_size_id','ASC')->get();
 				
