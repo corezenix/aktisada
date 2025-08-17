@@ -54,10 +54,16 @@ class ProductController extends Controller
 	  ->leftJoin('brands','products.brand_id','=','brands.pk_brand_id')
 	  ->leftJoin('item_types','products.type_id','=','item_types.pk_type_id')
 	  ->leftJoin('item_sizes','products.item_size_id','=','item_sizes.pk_size_id')
-	  ->leftJoin('materials','products.material_id','=','materials.pk_material_id')
-	  ->orderby('pk_product_id','Desc')->get();
+	  ->leftJoin('materials','products.material_id','=','materials.pk_material_id');
+	  	  
+	  if($request->shop_id!="")
+	  {
+		  $ads->where('user_id',$request->shop_id);
+	  }
+	  
+	  $res=$ads->orderBy('pk_product_id','DESC')->get();
         
-        return Datatables::of($ads)
+        return Datatables::of($res)
         ->addIndexColumn()
 		->editColumn('image', function ($row) {
             if ($row->image_file !='') {
@@ -129,6 +135,7 @@ class ProductController extends Controller
 		return $data;
 		
 	}
+	
 
     public function store(Request $request)
     {
@@ -158,64 +165,45 @@ class ProductController extends Controller
 		}
 		else
 		{
-       		try
-            {
-
-				if ($request->hasFile('image_file')) 
-            	{
-
-					$path = 'products/';
-            		$file = $request->file('image_file');
-					$fileName="";
-					$extension = $file->getClientOriginalExtension();
-					$fileName = Str::random(5)."-".date('his')."-".Str::random(3).".".$extension;
-					
-					FileUpload::uploadFile($file, $path,$fileName,'local');
-					
-					$pro = new Product();
-					$pro->product_title=$request->product_title;
-					$pro->category_id=$request->category;
-					$pro->brand_id=$request->brand_name;
-					$pro->user_id=$request->user_id;
-					$pro->type_id=$request->type_name;
-					$pro->material_id=$request->material_type;
-					$pro->item_size_id=$request->item_size;
-					$pro->quantity=$request->quantity;
-					$pro->flush_type=$request->flush_type??null;
-					$pro->description=$request->description;
-					$pro->image_file = $path.$fileName;
-					$pro->status=1;
-					$flag=$pro->save();
-					
-					if($flag)
-					{
-						Session::flush('success','Product image successfully added.');
-						return redirect('/admin/products');
-						 //return response()->json(['msg'=>'Product image successfully added.', 'status'=>true]);
-					}
-					else
-					{
-						Session::flush('fail','Something went wrong, please try again later.');
-						// return response()->json(['msg'=>'Something went wrong, please try again later.', 'status'=>false]);
-						return redirect()->back();
-					}
-
-            	}
+			$path = 'products/';
+			$fname="";
+			if ($request->hasFile('image_file')) 
+			{
+				$file = $request->file('image_file');
+				$extension = $file->getClientOriginalExtension();
+				$fileName = Str::random(5)."-".date('his')."-".Str::random(3).".".$extension;
+				FileUpload::uploadFile($file, $path,$fileName,'local');
+				$fname=$path.$fileName;
+			}
+				
+				$pro = new Product();
+				$pro->product_title=$request->product_title;
+				$pro->category_id=$request->category;
+				$pro->brand_id=$request->brand_name;
+				$pro->user_id=$request->user_id;
+				$pro->type_id=$request->type_name;
+				$pro->material_id=$request->material_type;
+				$pro->item_size_id=$request->item_size;
+				$pro->quantity=$request->quantity;
+				$pro->flush_type=$request->flush_type??null;
+				$pro->description=$request->description;
+				$pro->image_file = $fname;
+				$pro->status=1;
+				$flag=$pro->save();
+				
+				if($flag)
+				{
+					Session::flash('success','Product image successfully added.');
+					return redirect('/admin/products');
+					 //return response()->json(['msg'=>'Product image successfully added.', 'status'=>true]);
+				}
 				else
 				{
-					Session::flush('fail','Image not found, Try again.');	
-					return redirect()->back();					
-					//return response()->json(['msg'=>'Image not found, Try again.', 'status'=>false]);
+					Session::flash('fail','Something went wrong, please try again later.');
+					// return response()->json(['msg'=>'Something went wrong, please try again later.', 'status'=>false]);
+					return redirect()->back();
 				}
-            }
-            catch(\Exception $e)
-            {
-				Session::flush('fail',$e->getMessage());	
-				return redirect()->back();				
-			   //return response()->json(['msg'=>$e->getMessage(), 'status' => false]);
-            }
         } 
-		return redirect('/admin/products');
     }
 
 

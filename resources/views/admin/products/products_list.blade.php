@@ -71,22 +71,16 @@
 						  
 						   <div class="row" style="padding:10px 10px 10px 10px;" >						
 							<div class="col-6 col-lg-3 col-xl-3 col-xxl-3 d-flex">
-								<label class="mt-2" style="width:150px;font-weight:500;">Filter Branch</label>
-								<select id="branch_user" name="branch_user" class="form-control" >
-                                 <option value="">Select Branch</option>
-								  
+								<label class="mt-2" style="width:150px;font-weight:500;">Filter Shop</label>
+								<select id="filter_shop" name="filter_shop" class="form-control" >
+                                 <option value="">Select</option>
+								  @foreach($usrs as $row)
+									<option value="{{$row->pk_user_id}}">{{$row->shop_name}}</option>
+								@endforeach
 								</select>
 							</div>
 
-								
-							<div class="col-6 col-lg-3 col-xl-3 col-xxl-3 d-flex">
-								<label class="mt-2" style="width:150px;font-weight:500;">Filter Branch</label>
-								<select id="branch_user" name="branch_user" class="form-control" >
-                                 <option value="">Select Branch</option>
-								 
-								</select>
-							</div>
-
+							
 							<!--<div class="col-3 col-lg-3 col-xl-3 col-xxl-3" style="padding-top:22px;">
 							<button type="button" class="btn btn-primary btn-xs" id="btn-filter" > <i class="lni lni-funnel"></i> Filter</button>&nbsp;&nbsp;
 							<button type="button" class="btn btn-secondary btn-xs me-2" id="btn-clear-filter" > Clear</button>&nbsp;&nbsp;
@@ -193,7 +187,7 @@
 						</div>
 					</div>
 					<div class="row mb-2" >
-						<div class="col-12 col-lg-12 col-xl-12 col-xxl-12">
+						<div class="col-12 col-lg-6 col-xl-6 col-xxl-6">
 							<label for="address" class="form-label">Category</label>
 							<select class="form-control"  name="category" id="category" placeholder="category" required>
 							<option value="">select</option>
@@ -202,9 +196,7 @@
 							@endforeach
 							</select>
 						</div>
-					</div>
-					
-					<div class="row mb-2" >
+
 						<div class="col-12 col-lg-6 col-xl-6 col-xxl-6">
 							<label for="address" class="form-label">Brand Name</label>
 							<select class="form-control"  name="brand_name" id="brand_name" placeholder="brand name" required>
@@ -214,7 +206,8 @@
 							@endforeach
 							</select>
 						</div>
-
+						</div>
+					<div class="row mb-2" >
 						<div class="col-12 col-lg-6 col-xl-6 col-xxl-6">
 							<label for="address" class="form-label">Type Name</label>
 							<select class="form-control"  name="type_name" id="type_name" placeholder="type name" required>
@@ -222,26 +215,24 @@
 							
 							</select>
 						</div>
-					</div>
 					
-					<div class="row mb-2" >
 						<div class="col-12 col-lg-6 col-xl-6 col-xxl-6">
 							<label for="address" class="form-label">Material Type</label>
 							<select class="form-control"  name="material_type" id="material_type" placeholder="material_type" required>
 							<option value="">select</option>
 							</select>
 						</div>
-
+						</div>
+					
+					<div class="row mb-2" >
 						<div class="col-12 col-lg-6 col-xl-6 col-xxl-6">
 							<label for="address" class="form-label">Item Size</label>
 							<select class="form-control"  name="item_size" id="item_size" placeholder="item_size" required>
 							<option value="">select</option>
 							</select>
 						</div>
-					</div>
-					
-					<div class="row mb-2" >
-						<div class="col-12 col-lg-12 col-xl-12 col-xxl-12">
+
+						<div class="col-12 col-lg-6 col-xl-6 col-xxl-6">
 							<label for="address" class="form-label">Flush Type</label>
 							<select class="form-control"  name="flush_type" id="flush_type" placeholder="flush type" >
 							<option value="">select</option>
@@ -250,14 +241,7 @@
 							</select>
 						</div>
 					</div>
-					
-					<div class="row mb-2" >
-						<div class="col-12 col-lg-12 col-xl-12 col-xxl-12">
-							<label for="address" class="form-label">Quantity</label>
-							<input type="text" class="form-control"  name="quantity" id="quantity" placeholder="quantity">
-						</div>
-					</div>
-					
+
 					<div class="row mb-2" >
 						<div class="col-12 col-lg-12 col-xl-12 col-xxl-12">
 							<label for="address" class="form-label">Description</label>
@@ -266,7 +250,12 @@
 					</div>
 					
 					<div class="row mb-2" >
-						<div class="col-12 col-lg-12 col-xl-12 col-xxl-12">
+						<div class="col-12 col-lg-4 col-xl-4 col-xxl-4">
+							<label for="address" class="form-label">Quantity</label>
+							<input type="number" class="form-control"  name="quantity" id="quantity" placeholder="quantity">
+						</div>
+
+						<div class="col-12 col-lg-8 col-xl-8 col-xxl-8">
 							<label for="address" class="form-label">Image size(150x125)</label>
 							<input type="file" class="form-control"  name="image_file" id="image_file" placeholder="image_file">
 						</div>
@@ -338,7 +327,7 @@ var table2 = $('#datatable').DataTable({
 			url:BASE_URL+"/admin/get-products-list",
 			data: function (data) 
 		    {
-               //data.branch_user = $('#branch_user').val();
+               data.shop_id = $('#filter_shop').val();
 		    },
         },
 		columns: [
@@ -360,11 +349,10 @@ var table2 = $('#datatable').DataTable({
 
 });
 
-$("#branch_user").change(function()
+$("#filter_shop").change(function()
 {
 	$('#datatable').DataTable().ajax.reload(function (json) {
-		$("#app_count").html(json.recordsTotal);
-	});
+});
 	
 });
 

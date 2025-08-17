@@ -23,6 +23,14 @@
               </a>
             </li>
 			<li>
+              <a href="{{url('admin/products')}}" title="Category">
+                <div class="parent-icon">
+				<i class="lni lni-library" style="width:23px;"></i>
+                </div>
+                <div class="menu-title">Products</div>
+              </a>
+            </li>
+			<li>
               <a href="{{url('admin/category-list')}}" title="Category">
                 <div class="parent-icon">
 				<i class="lni lni-folder" style="width:23px;"></i>

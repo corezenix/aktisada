@@ -147,12 +147,12 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "182|vg77tc2xaSmx5FjunbpfNwdu3dkwUN9hT7oh5dQccf96ceaf",
+							"value": "183|sRPxCtKEbL643U9XiUorxQkOMqeVr2sbpHJRpdB1292867df",
 							"type": "string"
 						}
 					]
 				},
-				"method": "GET",
+				"method": "POST",
 				"header": [
 					{
 						"key": "Accept",
@@ -160,6 +160,16 @@
 						"type": "text"
 					}
 				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "category_id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
 					"raw": "https://app.aktisada.com/api/v1/get-brand-type-material",
 					"protocol": "https",
@@ -392,7 +402,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "178|YXddbfAqpWc5uXCGre1fPTAUv9EibA6UTiYK7nh533463fe2",
+							"value": "183|sRPxCtKEbL643U9XiUorxQkOMqeVr2sbpHJRpdB1292867df",
 							"type": "string"
 						}
 					]
@@ -437,19 +447,22 @@
 							"key": "item_size",
 							"value": "",
 							"type": "text"
+						},
+						{
+							"key": "search",
+							"value": "",
+							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/v1/product-list",
-					"protocol": "http",
+					"raw": "https://app.aktisada.com/api/v1/product-list",
+					"protocol": "https",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"app",
+						"aktisada",
+						"com"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"v1",

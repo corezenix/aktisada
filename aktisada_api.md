@@ -103,38 +103,16 @@ curl --location 'https://app.aktisada.com/api/v1/get-categories' \
 
 **4. get-brand-type-material:
 
-
 curl --location 'https://app.aktisada.com/api/v1/get-brand-type-material' \
 --header 'Accept: application/json' \
---header 'Authorization: Bearer 178|YXddbfAqpWc5uXCGre1fPTAUv9EibA6UTiYK7nh533463fe2'
-
-
+--header 'Authorization: Bearer 183|sRPxCtKEbL643U9XiUorxQkOMqeVr2sbpHJRpdB1292867df' \
+--form 'category_id="1"'
 
 **Response:
 
 {
     "message": "Details Successfully listed",
     "data": {
-        "categories": [
-            {
-                "pk_category_id": 1,
-                "category": "bbbbbbbbbbbbbb",
-                "image_file": "category/261754118628.png",
-                "status": 1,
-                "created_by": 1,
-                "created_at": "2025-08-02T05:57:34.000000Z",
-                "updated_at": "2025-08-02T07:13:58.000000Z"
-            },
-            {
-                "pk_category_id": 2,
-                "category": "mmmmmmmm",
-                "image_file": "category/441754118619.png",
-                "status": 1,
-                "created_by": 1,
-                "created_at": "2025-08-02T05:57:43.000000Z",
-                "updated_at": "2025-08-02T07:10:19.000000Z"
-            }
-        ],
         "brands": [
             {
                 "pk_brand_id": 1,
@@ -170,20 +148,46 @@ curl --location 'https://app.aktisada.com/api/v1/get-brand-type-material' \
         "types": [
             {
                 "pk_type_id": 1,
+                "category_id": 1,
                 "type_name": "mmmmmmmmmm",
                 "created_at": "2025-08-02T19:49:25.000000Z",
                 "updated_at": "2025-08-02T19:49:25.000000Z"
             },
             {
                 "pk_type_id": 2,
+                "category_id": 1,
                 "type_name": "kkkkkkkkkkkk",
                 "created_at": "2025-08-02T19:49:31.000000Z",
                 "updated_at": "2025-08-02T19:49:31.000000Z"
             }
         ],
+        "size": [
+            {
+                "pk_size_id": 1,
+                "category_id": 1,
+                "item_size": "bbbb1",
+                "created_at": "2025-08-12T15:45:56.000000Z",
+                "updated_at": "2025-08-12T15:45:56.000000Z"
+            },
+            {
+                "pk_size_id": 5,
+                "category_id": 1,
+                "item_size": "qqqqqqq",
+                "created_at": "2025-08-12T15:46:16.000000Z",
+                "updated_at": "2025-08-12T15:46:16.000000Z"
+            },
+            {
+                "pk_size_id": 6,
+                "category_id": 1,
+                "item_size": "wwwwwwwwww",
+                "created_at": "2025-08-12T15:46:20.000000Z",
+                "updated_at": "2025-08-12T15:46:20.000000Z"
+            }
+        ],
         "material": [
             {
                 "pk_material_id": 1,
+                "category_id": 1,
                 "material_name": "mmmmmmmmmmmm",
                 "created_at": "2025-08-02T19:53:50.000000Z",
                 "updated_at": "2025-08-02T19:53:50.000000Z"
@@ -745,4 +749,64 @@ curl --location 'https://app.aktisada.com/api/v1/product-details' \
     "status": true
 }
 
+** get-my-products
+curl --location 'https://app.aktisada.com/api/v1/get-my-products' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer 183|sRPxCtKEbL643U9XiUorxQkOMqeVr2sbpHJRpdB1292867df' \
+--form 'category_id=""' \
+--form 'brand_id=""' \
+--form 'type_id=""' \
+--form 'material_id=""' \
+--form 'user_id=""' \
+--form 'item_size=""' \
+--form 'search=""' \
+--form 'user_id="1"'
 
+**Response
+
+
+{
+    "message": "products Successfully listed",
+    "data": {
+        "current_page": 1,
+        "data": [
+            {
+                "pk_product_id": 2,
+                "product_title": "This is testing product",
+                "category_id": 1,
+                "user_id": 1,
+                "brand_id": 1,
+                "type_id": 2,
+                "material_id": 2,
+                "item_size_id": "10x15x5 inch",
+                "quantity": 5,
+                "flush_type": null,
+                "description": null,
+                "image_file": "products/681754170863.png",
+                "status": null,
+                "created_at": "2025-08-02T19:09:41.000000Z",
+                "pk_category_id": null,
+                "category": null,
+                "pk_brand_id": 1,
+                "brand_name": "bbbbbbbbbb",
+                "pk_type_id": 2,
+                "type_name": "kkkkkkkkkkkk",
+                "pk_material_id": null,
+                "material_name": null,
+                "pk_size_id": null,
+                "item_size": null,
+                "pk_user_id": 1,
+                "shop_name": "Shaji Enter prices",
+                "image_path": "https://app.aktisada.com/uploads/products/681754170863.png"
+            }
+        ],
+        "first_page_url": "https://app.aktisada.com/api/v1/get-my-products?page=1",
+        "from": 1,
+        "next_page_url": "https://app.aktisada.com/api/v1/get-my-products?page=2",
+        "path": "https://app.aktisada.com/api/v1/get-my-products",
+        "per_page": 1,
+        "prev_page_url": null,
+        "to": 1
+    },
+    "status": true
+}

@@ -21,12 +21,15 @@ class Authware
             return redirect('admin/login');
 		
         $user = Auth::user();
-        if ($user->isAdmin() || $user->isUser()){
-		
+
+        if ($user)  //->isAdmin() || $user->isUser()){
+		{
 			return $next($request);
         }
 		else
 		{
+			
+			dd($user);
 			return redirect('admin/login');
 		}
     }
