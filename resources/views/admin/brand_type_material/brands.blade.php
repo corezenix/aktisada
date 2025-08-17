@@ -57,14 +57,17 @@
 							<form id="AddBrand" enctype="multipart/form-data">
 								@csrf
 							  <div class="mb-2 row">
+							  <input type="hidden" name="brand_id" id="brand_id">
 																  
 									<div class="col-lg-11 col-xl-11 col-xxl-11 mt-2">
 										<label for="example-text-input" class="col-form-label">Brand Name </label>
 										<input class="form-control" type="text" name="brand_name" id="brand_name" required>
 										</div>
 																
-									<div class="col-lg-11 col-xl-11 col-xxl-11 mt-3">
-									<button type="submit" id="btnBrandSave" class="btn btn-primary">Submit </button>
+									<div class="col-lg-11 col-xl-11 col-xxl-11 mt-3 d-flex">
+									<button type="submit" id="btnBrSubmit" class="btn btn-primary show mx-2">Submit </button>
+									<button type="button" id="btnBrClear" class="btn btn-danger hide mx-2">Clear </button>
+									<button type="submit" id="btnBrUpdate" class="btn btn-info hide mx-2">Update Brand</button>
 									</div>
 							  </div>
 							  </form>
@@ -165,6 +168,32 @@ var table = $('#datatable').DataTable({
 });
 
 
+$('#datatable tbody').on('click','.brand-edit',function()
+{
+	$('#brand_id').val($(this).attr('id'));
+	$('#brand_name').val($(this).data('brname'));
+	$('#btnBrSubmit').removeClass('show');
+	$('#btnBrSubmit').addClass('hide');
+	$('#btnBrUpdate').removeClass('hide');
+	$('#btnBrUpdate').addClass('show');
+	$('#btnBrClear').removeClass('hide');
+	$('#btnBrClear').addClass('show');
+
+});
+
+$(document).on('click','#btnBrClear',function()
+{
+	$('#brand_id').val("");
+	$('#brand_name').val("");
+	$('#btnBrSubmit').removeClass('hide');
+	$('#btnBrSubmit').addClass('show');
+	$('#btnBrUpdate').removeClass('show');
+	$('#btnBrUpdate').addClass('hide');
+	$('#btnBrClear').removeClass('show');
+	$('#btnBrClear').addClass('hide');
+
+});
+
  $(document).on('submit', '#AddBrand', function(event) {
            event.preventDefault();
 			$.ajax({
@@ -179,7 +208,7 @@ var table = $('#datatable').DataTable({
                     if(res.status == true){
                     toastr.success(res.msg);
 					 $('#datatable').DataTable().ajax.reload(null, false);
-					 $("#brand_name").val("");
+					 $('#btnBrClear').trigger('click');
 					
                 }else{
                    toastr.error(res.msg);

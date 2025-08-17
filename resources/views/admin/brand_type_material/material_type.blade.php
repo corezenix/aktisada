@@ -58,14 +58,31 @@
 							<form id="AddMaterial" enctype="multipart/form-data">
 								@csrf
 							  <div class="mb-2 row">
-																  
+			  
+								<input type="hidden" name="material_id" id="material_id">
+			  
+			  
+									<div class="col-lg-11 col-xl-11 col-xxl-11 mt-2">
+										<label for="example-text-input" class="col-form-label">Category </label>
+										<select class="form-control" type="text" name="category_id" id="category_id" required>
+										<option value="">select</option>
+										@foreach($cat as $row)
+											<option value="{{$row->pk_category_id}}">{{$row->category}}</option>
+										@endforeach
+										</select>
+									</div>
+								</div>
+								<div class="mb-2 mt-2 row">								
 									<div class="col-lg-11 col-xl-11 col-xxl-11 mt-2">
 										<label for="example-text-input" class="col-form-label">Material </label>
-										<input class="form-control" type="text" name="material" id="Material" required>
+										<input class="form-control" type="text" name="material" id="material" required>
 										</div>
 																
-									<div class="col-lg-11 col-xl-11 col-xxl-11 mt-3">
-									<button type="submit" id="btnMaterialSave" class="btn btn-primary">Submit </button>
+									<div class="col-lg-11 col-xl-11 col-xxl-11 mt-3 d-flex">
+									<button type="submit" id="btnMatSubmit" class="btn btn-primary show mx-2">Submit </button>
+									<button type="button" id="btnMatClear" class="btn btn-danger hide mx-2">Clear </button>
+									<button type="submit" id="btnMatUpdate" class="btn btn-info hide mx-2">Update Material </button>
+									
 									</div>
 							  </div>
 							  </form>
@@ -101,6 +118,7 @@
                                <thead class="thead-semi-dark">
 								<tr>
 									<th style="width:60px;">Sl No</th>
+									<th>Category</th>
 									<th>Material</th>
 									<th style="width:60px;">Action</th>
 								</tr>
@@ -168,6 +186,7 @@ var table = $('#datatable2').DataTable({
         },
 		columns: [
 		   {"data": 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false  },
+		   {data: 'category', name: 'category'},
 		   {data: 'material_name', name: 'material_name'},
 		   {data: 'action', name: 'action', orderable: false, searchable: false}
 	   ],
@@ -175,6 +194,33 @@ var table = $('#datatable2').DataTable({
 });
 
 
+$('#datatable2 tbody').on('click','.mat-edit',function()
+{
+	$('#material_id').val($(this).attr('id'));
+	$('#category_id').val($(this).data('catid'));
+	$('#material').val($(this).data('matname'));
+	$('#btnMatSubmit').removeClass('show');
+	$('#btnMatSubmit').addClass('hide');
+	$('#btnMatUpdate').removeClass('hide');
+	$('#btnMatUpdate').addClass('show');
+	$('#btnMatClear').removeClass('hide');
+	$('#btnMatClear').addClass('show');
+
+});
+
+$(document).on('click','#btnMatClear',function()
+{
+	$('#material_id').val("");
+	$('#category_id').val("");
+	$('#material').val("");
+	$('#btnMatSubmit').removeClass('hide');
+	$('#btnMatSubmit').addClass('show');
+	$('#btnMatUpdate').removeClass('show');
+	$('#btnMatUpdate').addClass('hide');
+	$('#btnMatClear').removeClass('show');
+	$('#btnMatClear').addClass('hide');
+
+});
 
 //----------------------------------------------------------------------------
 
@@ -193,7 +239,7 @@ var table = $('#datatable2').DataTable({
                     if(res.status == true){
                     toastr.success(res.msg);
 					 $('#datatable2').DataTable().ajax.reload(null, false);
-					 $("#material").val("");
+					 $('#btnMatClear').trigger('click');
 					
                 }else{
                    toastr.error(res.msg);

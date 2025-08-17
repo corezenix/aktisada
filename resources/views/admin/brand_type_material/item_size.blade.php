@@ -57,6 +57,7 @@
 							<form id="AddItemSize" enctype="multipart/form-data">
 								@csrf
 							  <div class="mb-2 row">
+							  <input type="hidden" name="item_size_id" id="item_size_id">
 							  
 										<div class="col-lg-11 col-xl-11 col-xxl-11 mt-2">
 										<label for="example-text-input" class="col-form-label">Category </label>
@@ -73,8 +74,11 @@
 										<input class="form-control" type="text" name="item_size" id="item_size" required>
 										</div>
 																
-									<div class="col-lg-11 col-xl-11 col-xxl-11 mt-3">
-									<button type="submit" id="btnTypeSave" class="btn btn-primary">Submit </button>
+									<div class="col-lg-11 col-xl-11 col-xxl-11 mt-3 d-flex">
+									<button type="submit" id="btnTypeSubmit" class="btn btn-primary show mx-2">Submit </button>
+									<button type="button" id="btnTypeClear" class="btn btn-danger hide mx-2">Clear </button>
+									<button type="submit" id="btnTypeUpdate" class="btn btn-info hide mx-2">Update Size</button>
+									
 									</div>
 							  </div>
 							  </form>
@@ -178,6 +182,34 @@ var table = $('#datatable1').DataTable({
 });
 
 
+$('#datatable1 tbody').on('click','.size-edit',function()
+{
+	$('#item_size_id').val($(this).attr('id'));
+	$('#category').val($(this).data('catid'));
+	$('#item_size').val($(this).data('itemsize'));
+	$('#btnTypeSubmit').removeClass('show');
+	$('#btnTypeSubmit').addClass('hide');
+	$('#btnTypeUpdate').removeClass('hide');
+	$('#btnTypeUpdate').addClass('show');
+	$('#btnTypeClear').removeClass('hide');
+	$('#btnTypeClear').addClass('show');
+
+});
+
+$(document).on('click','#btnTypeClear',function()
+{
+	$('#item_size_id').val("");
+	$('#category').val("");
+	$('#item_size').val("");
+	$('#btnTypeSubmit').removeClass('hide');
+	$('#btnTypeSubmit').addClass('show');
+	$('#btnTypeUpdate').removeClass('show');
+	$('#btnTypeUpdate').addClass('hide');
+	$('#btnTypeClear').removeClass('show');
+	$('#btnTypeClear').addClass('hide');
+
+});
+
 //----------------------------------------------------------------------------
 
  $(document).on('submit', '#AddItemSize', function(event) {
@@ -194,7 +226,7 @@ var table = $('#datatable1').DataTable({
                     if(res.status == true){
                     toastr.success(res.msg);
 					 $('#datatable1').DataTable().ajax.reload(null, false);
-					 $("#item_size").val("");
+					 $('#btnTypeClear').trigger('click');
 					
                 }else{
                    toastr.error(res.msg);

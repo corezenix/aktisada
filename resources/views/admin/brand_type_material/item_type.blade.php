@@ -56,15 +56,32 @@
 							
 							<form id="AddType" enctype="multipart/form-data">
 								@csrf
-							  <div class="mb-2 row">
-																  
+								
+								<input type="hidden" name="type_id" id="type_id">
+								
+								<div class="mb-2 row">
+											
 									<div class="col-lg-11 col-xl-11 col-xxl-11 mt-2">
-										<label for="example-text-input" class="col-form-label">Type Name </label>
+										<label  class="col-form-label">Category </label>
+										<select class="form-control" type="text" name="category_id" id="category_id" required>
+										<option value="">select</option>
+										@foreach($cat as $row)
+											<option value="{{$row->pk_category_id}}">{{$row->category}}</option>
+										@endforeach
+										</select>
+									</div>
+								</div>
+								
+								<div class="mb-2 row">			
+									<div class="col-lg-11 col-xl-11 col-xxl-11 mt-2">
+										<label  class="col-form-label">Type Name </label>
 										<input class="form-control" type="text" name="type_name" id="type_name" required>
 										</div>
 																
-									<div class="col-lg-11 col-xl-11 col-xxl-11 mt-3">
-									<button type="submit" id="btnTypeSave" class="btn btn-primary">Submit </button>
+									<div class="col-lg-11 col-xl-11 col-xxl-11 mt-3 d-flex">
+									<button type="submit" id="btnTypeSubmit" class="btn btn-primary show mx-2">Submit </button>
+									<button type="button" id="btnTypeClear" class="btn btn-danger hide mx-2">Clear </button>
+									<button type="submit" id="btnTypeUpdate" class="btn btn-info hide mx-2">Update Type</button>
 									</div>
 							  </div>
 							  </form>
@@ -99,6 +116,7 @@
                                <thead class="thead-semi-dark">
 								<tr>
 									<th style="width:60px;">Sl No</th>
+									<th>Category</th>
 									<th>Type</th>
 									<th style="width:60px;">Action</th>
 								</tr>
@@ -159,6 +177,7 @@ var table = $('#datatable1').DataTable({
         },
 		columns: [
 		   {"data": 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false  },
+		   {data: 'category', name: 'category'},
 		   {data: 'type_name', name: 'type_name'},
 		   {data: 'action', name: 'action', orderable: false, searchable: false}
 	   ],
@@ -182,7 +201,7 @@ var table = $('#datatable1').DataTable({
                     if(res.status == true){
                     toastr.success(res.msg);
 					 $('#datatable1').DataTable().ajax.reload(null, false);
-					 $("#type_name").val("");
+					 $('#btnTypeClear').trigger('click');
 					
                 }else{
                    toastr.error(res.msg);
@@ -194,6 +213,33 @@ var table = $('#datatable1').DataTable({
             });
        });
 
+$('#datatable1 tbody').on('click','.type-edit',function()
+{
+	$('#type_id').val($(this).attr('id'));
+	$('#category_id').val($(this).data('catid'));
+	$('#type_name').val($(this).data('typename'));
+	$('#btnTypeSubmit').removeClass('show');
+	$('#btnTypeSubmit').addClass('hide');
+	$('#btnTypeUpdate').removeClass('hide');
+	$('#btnTypeUpdate').addClass('show');
+	$('#btnTypeClear').removeClass('hide');
+	$('#btnTypeClear').addClass('show');
+
+});
+
+$(document).on('click','#btnTypeClear',function()
+{
+	$('#type_id').val("");
+	$('#category_id').val("");
+	$('#type_name').val("");
+	$('#btnTypeSubmit').removeClass('hide');
+	$('#btnTypeSubmit').addClass('show');
+	$('#btnTypeUpdate').removeClass('show');
+	$('#btnTypeUpdate').addClass('hide');
+	$('#btnTypeClear').removeClass('show');
+	$('#btnTypeClear').addClass('hide');
+
+});
 
 $('#datatable1 tbody').on('click','.type-delete',function()
 {

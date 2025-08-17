@@ -172,16 +172,17 @@
  
  
 <div class="modal fade" id="add-product" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content" >
+	<div class="modal-dialog" >
+		<div class="modal-content" style="width:600px;" >
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			
 			<div class="modal-body" style="padding:20px 40px;">
+			<!--method="post" action="{{url('admin/save-product')}}"-->
 			
-				<form id="formChangePassword">
+				<form id="formSaveProduct"  method="post" action="{{url('admin/save-product')}}" enctype="multipart/form-data">
 				@csrf
 					<input type="hidden" name="user_id" id="user_id">
 					
@@ -196,6 +197,9 @@
 							<label for="address" class="form-label">Category</label>
 							<select class="form-control"  name="category" id="category" placeholder="category" required>
 							<option value="">select</option>
+							@foreach($cats as $row)
+								<option value="{{$row->pk_category_id}}">{{$row->category}}</option>
+							@endforeach
 							</select>
 						</div>
 					</div>
@@ -205,6 +209,9 @@
 							<label for="address" class="form-label">Brand Name</label>
 							<select class="form-control"  name="brand_name" id="brand_name" placeholder="brand name" required>
 							<option value="">select</option>
+							@foreach($brands as $row)
+								<option value="{{$row->pk_brand_id}}">{{$row->brand_name}}</option>
+							@endforeach
 							</select>
 						</div>
 
@@ -212,6 +219,7 @@
 							<label for="address" class="form-label">Type Name</label>
 							<select class="form-control"  name="type_name" id="type_name" placeholder="type name" required>
 							<option value="">select</option>
+							
 							</select>
 						</div>
 					</div>
@@ -235,8 +243,10 @@
 					<div class="row mb-2" >
 						<div class="col-12 col-lg-12 col-xl-12 col-xxl-12">
 							<label for="address" class="form-label">Flush Type</label>
-							<select class="form-control"  name="flush_type" id="flush_type" placeholder="flush type" required>
+							<select class="form-control"  name="flush_type" id="flush_type" placeholder="flush type" >
 							<option value="">select</option>
+							<option value="Standard">Standard</option>
+							<option value="Siphonic">Siphonic</option>
 							</select>
 						</div>
 					</div>
@@ -247,6 +257,7 @@
 							<input type="text" class="form-control"  name="quantity" id="quantity" placeholder="quantity">
 						</div>
 					</div>
+					
 					<div class="row mb-2" >
 						<div class="col-12 col-lg-12 col-xl-12 col-xxl-12">
 							<label for="address" class="form-label">Description</label>
@@ -264,9 +275,12 @@
 					
 					<div class="row mb-2" >
 						<div class="col-12 col-lg-12 col-xl-12 col-xxl-12">
-							<label for="address" class="form-label">Select User</label>
+							<label for="address" class="form-label">Select Shop</label>
 							<select class="form-control"  name="user_id" id="user_id" placeholder="user" required>
 							<option value="">select</option>
+							@foreach($usrs as $row)
+								<option value="{{$row->pk_user_id}}">{{$row->shop_name}}</option>
+							@endforeach
 							</select>
 						</div>
 					</div>
@@ -284,9 +298,6 @@
 	</div>
 </div>	  
 			  
- 
- 
- 
  
 		
 @push('scripts')
@@ -365,59 +376,99 @@ $("#btn-filter").click(function()
 
 });
 
+$(document).on('change', '#category', function () {
 
-$('#datatable').on('click', '.scratch-web-redeem', function (event) {
-           event.preventDefault();
-           var customer_id = $(this).attr('customer-id');
+	   var cat_id = $(this).val();
 
-           var url = BASE_URL + '/user/scratch-web-redeem/' + customer_id;
-   
-			Swal.fire({
-				  //title: "Are you sure?",
-				  text: "Are you sure, You want to redeem now?",
-				  icon: "question",
-				  showCancelButton: true,
-				  confirmButtonColor: "#3085d6",
-				  cancelButtonColor: "#d33",
-				  confirmButtonText: "Yes, Redeem it!"
-				}).then((result) => {
-				  if (result.isConfirmed) {
-					
-					var tid=$(this).attr('id');
-					
-					  $.ajax({
-					  url: BASE_URL + '/users/scratch-web-redeem/' + customer_id,
-					  type: 'get',
-					  dataType: 'json',
-					  //data:{'track_id':tid},
-					  success: function (res) 
-					  {
-						if(res.status==1)
-						{
-							 toastr.success(res.msg);
-							 $('#datatable').DataTable().ajax.reload(null,false);
-						}
-						else
-						{
-							 toastr.error(res.msg);
-						}
-					  }
-					});
+			$.ajax({
+			  url: BASE_URL + '/admin/get-type-size-material/' + cat_id,
+			  type: 'get',
+			  dataType: 'json',
+			  //data:{'track_id':tid},
+			  success: function (res) 
+			  {
+					console.log(res);
+					$("#type_name").html(res.types);
+					 $("#item_size").html(res.sizes);
+					 $("#material_type").html(res.mats);
+				
+			  }
+			});
 
-				  }
-				});
-       });
+   });
 
 
 $(document).on('click','#btn-clear-filter',function()
 {
-	
 	location.reload();
-
-
 });
 
 
+/*$(document).on('submit', '#formSaveProduct', function(event) {
+	   event.preventDefault();
+	   alert("ok");
+		$.ajax({
+				url: BASE_URL + '/admin/save-product',
+				type: 'POST',
+				dataType: 'json',
+				data:  new FormData(this),
+				contentType: false,
+				processData:false,
+			})
+			.done(function(res) {
+				if(res.status == true){
+				toastr.success(res.msg);
+				$('#datatable').DataTable().ajax.reload(null, false);
+				
+			}else{
+			   toastr.error(res.msg);
+			}
+			})
+			.fail(function() {
+			})
+			 .always(function(com) {
+		});
+   });
+*/
+
+$('#datatable tbody').on('click','.pro-delete',function()
+{
+	Swal.fire({
+	  //title: "Are you sure?",
+	  text: "Are you sure, You want to delete this data?",
+	  icon: "question",
+	  showCancelButton: true,
+	  confirmButtonColor: "#3085d6",
+	  cancelButtonColor: "#d33",
+	  confirmButtonText: "Yes, Delete it!"
+	}).then((result) => {
+	  if (result.isConfirmed) {
+		
+		var tid=$(this).attr('id');
+		
+		  $.ajax({
+          url: "{{url('admin/delete-product')}}"+'/'+tid,
+          type: 'get',
+		  dataType: 'json',
+          //data:{'track_id':tid},
+          success: function (res) 
+		  {
+			if(res.status==1)
+			{
+				 toastr.success(res.msg);
+				 $("#datatable").DataTable().ajax.reload(null,false);
+			}
+			else
+			{
+				 toastr.error(res.msg);
+			}
+          }
+		});
+
+	  }
+	});
+
+});
 /*
 
 $("#export-to-excel").click(function()

@@ -36,17 +36,19 @@ class BrandTypeMaterialController extends Controller
         return view('admin.brand_type_material.brands');
     }
 	
-	 public function itemType()
+	public function itemType()
     {
-        return view('admin.brand_type_material.item_type');
+		$cat=Category::all();
+        return view('admin.brand_type_material.item_type',compact('cat'));
     }
 	
-	 public function materialType()
+	public function materialType()
     {
-        return view('admin.brand_type_material.material_type');
+		$cat=Category::all();
+        return view('admin.brand_type_material.material_type',compact('cat'));
     }
 	
-	 public function itemSize()
+	public function itemSize()
     {
 		$cat=Category::all();       
 	   return view('admin.brand_type_material.item_size',compact('cat'));
@@ -65,8 +67,9 @@ class BrandTypeMaterialController extends Controller
         
         ->addColumn('action', function ($row) {
 
-				$action='<a href="javascript:;" class="brand-delete" id="'.$row->pk_brand_id.'"><i class="lni lni-trash" style="font-size:16px;"></i></a>';
-				return $action;
+				$act='<a href="javascript:;" class="brand-edit" id="'.$row->pk_brand_id.'" data-brname="'.$row->brand_name.'"><i class="lni lni-pencil" style="font-size:16px;"></i></a>&nbsp;
+				<a href="javascript:;" class="brand-delete" id="'.$row->pk_brand_id.'"><i class="lni lni-trash" style="font-size:16px;"></i></a>';
+				return $act;
         })
         ->rawColumns(['action'])
         ->toJson(true);
@@ -86,19 +89,32 @@ class BrandTypeMaterialController extends Controller
 		{
        		try
             {
-					$br = new Brand();
-					$br->brand_name = $request->brand_name;
-					$flag=$br->save();
-					
-					if($flag)
+				if($request->brand_id!="")
 					{
-						 return response()->json(['msg'=>'Brand successfully added.', 'status'=>true]);
+						$br = Brand::findorfail($request->brand_id);
+						$br->brand_name = $request->brand_name;
+						$flag=$br->save();
+						
+						if($flag)
+						{
+							 return response()->json(['msg'=>'Brand successfully updated.', 'status'=>true]);
+						}
 					}
 					else
 					{
-						 return response()->json(['msg'=>'Something went wrong, please try again later.', 'status'=>false]);
+						$br = new Brand();
+						$br->brand_name = $request->brand_name;
+						$flag=$br->save();
+						
+						if($flag)
+						{
+							 return response()->json(['msg'=>'Brand successfully added.', 'status'=>true]);
+						}
+						else
+						{
+							 return response()->json(['msg'=>'Something went wrong, please try again later.', 'status'=>false]);
+						}
 					}
-
             }
             catch(\Exception $e)
             {
@@ -131,21 +147,24 @@ class BrandTypeMaterialController extends Controller
     }
 //--------------------------------------------------------------------------------------------
 
-
 public function getItemTypes()
     {
 		
       $vendorId=User::getVendorId();
 	  
-      $ads = ItemType::orderby('pk_type_id','Desc')->get();
-        
+      $ads = ItemType::select('item_types.*','category.category')
+	  ->leftJoin('category','item_types.category_id','=','category.pk_category_id')
+	  ->orderby('pk_type_id','Desc')->get();
+	  
         return Datatables::of($ads)
         ->addIndexColumn()
         
         ->addColumn('action', function ($row) {
 
-				$action='<a href="javascript:;" class="type-delete" id="'.$row->pk_type_id.'"><i class="lni lni-trash"></i></a>';
-				return $action;
+				$act='<a href="javascript:;" class="type-edit" id="'.$row->pk_type_id.'" data-catid="'.$row->category_id.'" 
+				 data-typename="'.$row->type_name.'"><i class="lni lni-pencil"></i></a> &nbsp;
+				<a href="javascript:;" class="type-delete" id="'.$row->pk_type_id.'"><i class="lni lni-trash"></i></a>';
+				return $act;
         })
         ->rawColumns(['action'])
         ->toJson(true);
@@ -155,6 +174,7 @@ public function getItemTypes()
     public function saveItemType(Request $request)
     {
       	$input = $request->all();
+
       	$userId=Auth::user()->pk_user_id;
         $validator=Validator::make($input, ['type_name'=>'required'],[]);
         if ($validator->fails()) 
@@ -165,17 +185,33 @@ public function getItemTypes()
 		{
        		try
             {
-					$ity = new ItemType();
-					$ity->type_name = $request->type_name;
-					$flag=$ity->save();
-					
-					if($flag)
+					if($request->type_id!="")
 					{
-						 return response()->json(['msg'=>'Type successfully added.', 'status'=>true]);
+						$ity = ItemType::findorfail($request->type_id);
+						$ity->category_id = $request->category_id;
+						$ity->type_name = $request->type_name;
+						$flag=$ity->save();
+						
+						if($flag)
+						{
+							 return response()->json(['msg'=>'Type successfully updated.', 'status'=>true]);
+						}
 					}
 					else
 					{
-						 return response()->json(['msg'=>'Something went wrong, please try again later.', 'status'=>false]);
+						$ity = new ItemType();
+						$ity->category_id = $request->category_id;
+						$ity->type_name = $request->type_name;
+						$flag=$ity->save();
+						
+						if($flag)
+						{
+							 return response()->json(['msg'=>'Type successfully added.', 'status'=>true]);
+						}
+						else
+						{
+							 return response()->json(['msg'=>'Something went wrong, please try again later.', 'status'=>false]);
+						}
 					}
 
             }
@@ -218,20 +254,24 @@ public function getMaterials()
 		
       $vendorId=User::getVendorId();
 	  
-      $mat = Material::orderby('pk_material_id','Desc')->get();
+      $mat = Material::select('materials.*','category.category')
+	  ->leftJoin('category','materials.category_id','=','category.pk_category_id')
+	  ->orderby('pk_material_id','Desc')->get();
         
         return Datatables::of($mat)
         ->addIndexColumn()
         
         ->addColumn('action', function ($row) {
 
-				$action='<a href="javascript:;" class="mat-delete" id="'.$row->pk_material_id.'"><i class="lni lni-trash"></i></a>';
-				return $action;
+				$act='<a href="javascript:;" class="mat-edit" id="'.$row->pk_material_id.'" data-catid="'.$row->category_id.'" 
+				 data-matname="'.$row->material_name.'"><i class="lni lni-pencil"></i></a> &nbsp;
+				<a href="javascript:;" class="mat-delete" id="'.$row->pk_material_id.'"><i class="lni lni-trash"></i></a>';
+				return $act;
         })
         ->rawColumns(['action'])
         ->toJson(true);
     }
-		
+
 
     public function saveMaterial(Request $request)
     {
@@ -245,18 +285,34 @@ public function getMaterials()
 		else
 		{
        		try
-            {
-					$ma = new Material();
-					$ma->material_name = $request->material;
-					$flag=$ma->save();
-					
-					if($flag)
+            {		
+					if($request->material_id!="")
 					{
-						 return response()->json(['msg'=>'Material successfully added.', 'status'=>true]);
+						$ma = Material::findorfail($request->material_id);
+						$ma->category_id = $request->category_id;
+						$ma->material_name = $request->material;
+						$flag=$ma->save();
+						
+						if($flag)
+						{
+							 return response()->json(['msg'=>'Material successfully updated.', 'status'=>true]);
+						}
 					}
 					else
 					{
-						 return response()->json(['msg'=>'Something went wrong, please try again later.', 'status'=>false]);
+						$ma = new Material();
+						$ma->category_id = $request->category_id;
+						$ma->material_name = $request->material;
+						$flag=$ma->save();
+						
+						if($flag)
+						{
+							 return response()->json(['msg'=>'Material successfully added.', 'status'=>true]);
+						}
+						else
+						{
+							 return response()->json(['msg'=>'Something went wrong, please try again later.', 'status'=>false]);
+						}
 					}
 
             }
@@ -308,8 +364,10 @@ public function getItemSizes()
         
         ->addColumn('action', function ($row) {
 
-				$action='<a href="javascript:;" class="size-delete" id="'.$row->pk_size_id.'"><i class="lni lni-trash"></i></a>';
-				return $action;
+				$act='<a href="javascript:;" class="size-edit" id="'.$row->pk_size_id.'"
+				data-catid="'.$row->category_id.'" data-itemsize="'.$row->item_size.'"><i class="lni lni-pencil"></i></a> &nbsp;
+				<a href="javascript:;" class="size-delete" id="'.$row->pk_size_id.'"><i class="lni lni-trash"></i></a>';
+				return $act;
         })
         ->rawColumns(['action'])
         ->toJson(true);
@@ -329,18 +387,33 @@ public function getItemSizes()
 		{
        		try
             {
-					$its = new ItemSize();
-					$its->category_id = $request->category;
-					$its->item_size = $request->item_size;
-					$flag=$its->save();
-					
-					if($flag)
+					if($request->item_size_id!="")
 					{
-						 return response()->json(['msg'=>'Item size successfully added.', 'status'=>true]);
+						$its = ItemSize::findorfail($request->item_size_id);
+						$its->category_id = $request->category;
+						$its->item_size = $request->item_size;
+						$flag=$its->save();
+						
+						if($flag)
+						{
+							 return response()->json(['msg'=>'Type successfully updated.', 'status'=>true]);
+						}
 					}
 					else
 					{
-						 return response()->json(['msg'=>'Something went wrong, please try again later.', 'status'=>false]);
+						$its = new ItemSize();
+						$its->category_id = $request->category;
+						$its->item_size = $request->item_size;
+						$flag=$its->save();
+						
+						if($flag)
+						{
+							 return response()->json(['msg'=>'Item size successfully added.', 'status'=>true]);
+						}
+						else
+						{
+							 return response()->json(['msg'=>'Something went wrong, please try again later.', 'status'=>false]);
+						}
 					}
 
             }

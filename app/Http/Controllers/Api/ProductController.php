@@ -142,6 +142,11 @@ class ProductController extends Controller
 					{
 						$query->where('products.user_id',$request->user_id);
 					}
+					
+					if($request->has('search') && $request->search!='')
+					{
+						$query->where('products.product_title','like','%'.$request->search.'%');
+					}
 				
 				$products=$query->orderBy('products.pk_product_id','ASC')->simplePaginate(1)
 				->through(function ($q) 
@@ -366,71 +371,91 @@ public function updateProduct(Request $request)
     }
 
 
-
-
-
-
-
-
 	/**
-    * Display a listing of the categorie sonly.
-    * Method: GET
+    * Display a listing of the products.
+    * Method: POST
     * @return \Illuminate\Http\Response
     */	
 	
 	
-    public function getCategories()
+    public function getMyProducts(Request $request)
     {
-		try
-		{
-			$category = Category::where('status',1)->orderBy('pk_category_id','ASC')->get()->map(function($q)
+		
+		$rule=[ 
+			  'user_id'=>'required',
+        ];
+        
+        $validator = Validator::make($request->all(),$rule);
+        if ($validator->passes()) 
+        {
+			try
 			{
-				$q['image_path']=url('uploads').'/'.$q->image_file;
-				return $q;
-			});
-			
-			$data['categories']=$category;
+				$query=Product::select('products.*','category.pk_category_id','category.category','brands.pk_brand_id','brands.brand_name',
+					'item_types.pk_type_id','item_types.type_name','materials.pk_material_id','materials.material_name','item_sizes.pk_size_id','item_sizes.item_size',
+					'users.pk_user_id','users.shop_name')
+					->leftJoin('category','products.category_id','=','category.pk_category_id')
+					->leftJoin('brands','products.brand_id','=','brands.pk_brand_id')
+					->leftJoin('item_types','products.type_id','=','item_types.pk_type_id')
+					->leftJoin('materials','products.material_id','=','materials.pk_material_id')
+					->leftJoin('item_sizes','products.item_size_id','=','item_sizes.pk_size_id')
+					->leftJoin('users','products.user_id','=','users.pk_user_id')
+					->where('products.user_id',$request->user_id);
+					
+					if($request->has('brand_id') && $request->brand_id!='')
+					{
+						$query->where('products.brand_id',$request->brand_id);
+					}
+					
+					if($request->has('type_id') && $request->type_id!='')
+					{
+						$query->where('products.type_id',$request->type_id);
+					}
+					
+					if($request->has('material_id') && $request->material_id!='')
+					{
+						$query->where('products.material_id',$request->material_id);
+					}
+					
+					if($request->has('item_size_id') && $request->item_size_id!='')
+					{
+						$query->where('products.item_size_id',$request->item_size_id);
+					}
+					
+					if($request->has('user_id') && $request->user_id!='')
+					{
+						$query->where('products.user_id',$request->user_id);
+					}
+					
+					if($request->has('search') && $request->search!='')
+					{
+						$query->where('products.product_title','like','%'.$request->search.'%');
+					}
+				
+				$products=$query->orderBy('products.pk_product_id','ASC')->simplePaginate(1)
+				->through(function ($q) 
+				{ 
+					$q['image_path']=url('uploads').'/'.$q->image_file;
+					return $q;
+				 });
 
-			return response()->json(['message'=> 'Category Successfully listed','data'=>$data,'status' => true]);
-
-		}catch(\Exception $e){
-			return response()->json(['message'=>$e->getMessage(), 'status' => 'fail']);
+				
+				if(!$products->isEmpty())
+				{
+					return response()->json(['message'=> 'products Successfully listed','data'=>$products,'status' => true]);
+				}else{
+					return response()->json(['message'=> 'Products Not Found', 'status' => false]); 
+				}  
+			}catch(\Exception $e){
+				return response()->json(['message'=>$e->getMessage(), 'status' => false]);
+			}
 		}
-        
-    }
-	
-	
-	/**
-    * Display a listing of the categories,brand,types, materials,and users.
-    * Method: GET
-    * @return \Illuminate\Http\Response
-    */	
-	
-	
-    public function getBrandTypeMaterial()
-    {
-		try
+		else
 		{
-			$category = Category::where('status',1)->orderBy('pk_category_id','ASC')->get();
-			$brands = Brand::orderBy('pk_brand_id','ASC')->get();
-			$types = ItemType::orderBy('pk_type_id','ASC')->get();
-			$material = Material::orderBy('pk_material_id','ASC')->get();
-			$users = User::where('status',1)->where('role_id',2)->orderBy('id','ASC')->get();
-			
-			$data['categories']=$category;
-			$data['brands']=$brands;
-			$data['types']=$types;
-			$data['material']=$material;
-			$data['shops']=$users;
-			
-			return response()->json(['message'=> 'Detild Successfully listed','data'=>$data,'status' => true]);
-
-		}catch(\Exception $e){
-			return response()->json(['message'=>$e->getMessage(), 'status' => false]);
+			return response()->json(['message'=>$validator->messages()->first(), 'status' => false]);
 		}
-        
-    }
-	
+	}
+
+
 
 
 }

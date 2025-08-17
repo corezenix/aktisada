@@ -107,12 +107,12 @@ Route::controller(BrandTypeMaterialController::class)->group(function() {
 
 Route::controller(ProductController::class)->group(function() {
 	Route::get('/products', 'index')->name('products');
-	//Route::post('/save-slide', 'store')->name('save-slide');
+	Route::post('/save-product', 'store')->name('save-product');
 	Route::get('/get-products-list', 'getProductsList')->name('get-products-list');
-	//Route::get('/delete-slide/{id}', 'destroy')->name('delete-slide');
+	Route::get('/get-type-size-material/{id}', 'getTypeSizeMaterial')->name('get-type-size-material');
+	Route::get('/delete-product/{id}', 'destroy')->name('delete-product');
 	//Route::get('/act-deact-slide-image/{op}/{id}', 'activateDeactivate')->name('act-deact-slide-image');	
 });
-
 
 
 

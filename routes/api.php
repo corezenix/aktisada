@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->group( function () {
 	{
 		Route::get('get-slides', 'getslides')->name('get-slides');
 		Route::get('get-categories', 'getCategories')->name('get-categories');
-		Route::get('get-brand-type-material', 'getBrandTypeMaterial')->name('get-brand-type-material');
+		Route::post('get-brand-type-material', 'getBrandTypeMaterial')->name('get-brand-type-material');
 		Route::post('add-brand', 'addBrand')->name('add-brand');
 		Route::post('get-filters', 'getFilters')->name('get-filters');
 		
@@ -37,10 +37,10 @@ Route::middleware('auth:sanctum')->group( function () {
 		Route::post('edit-product', 'editProduct')->name('edit-product');
 		Route::post('update-product', 'updateProduct')->name('update-product');
 		Route::post('product-details', 'getProductDetails')->name('product-details');
+		Route::post('get-my-products', 'getMyProducts')->name('get-my-products');
 		
 	});
-	
-	
+
 	
 
 });

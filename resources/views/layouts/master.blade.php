@@ -186,7 +186,7 @@
 				</div>
 			</div>
   </div>
-  
+    
   <!--end wrapper-->
 
 <script src="{{url('assets/js/jquery.min.js')}}"></script>
@@ -234,6 +234,20 @@
  <!--<script>
     new PerfectScrollbar(".best-product")
  </script>-->
+
+@if(Session::get('success')!="")
+	<script>
+	toastr.success("{{Session::get('success')}}");
+</script>
+@endif
+@if(Session::get('fail')!="")
+	<script>
+	toastr.success("{{Session::get('fail')}}");
+</script>
+@endif
+
+
+
 
 @stack('scripts')
 

@@ -18,7 +18,7 @@ class Authware
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::check())
-            return redirect('login');
+            return redirect('admin/login');
 		
         $user = Auth::user();
         if ($user->isAdmin() || $user->isUser()){
@@ -27,7 +27,7 @@ class Authware
         }
 		else
 		{
-			return redirect('login');
+			return redirect('admin/login');
 		}
     }
 }
