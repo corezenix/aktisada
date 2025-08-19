@@ -109,7 +109,7 @@ class ProductController extends Controller
 			{
 				$query=Product::select('products.*','category.pk_category_id','category.category','brands.pk_brand_id','brands.brand_name',
 					'item_types.pk_type_id','item_types.type_name','materials.pk_material_id','materials.material_name','item_sizes.pk_size_id','item_sizes.item_size',
-					'users.pk_user_id','users.shop_name')
+					'users.pk_user_id','users.shop_name','users.country_code','users.mobile','users.whatsapp_no')
 					->leftJoin('category','products.category_id','=','category.pk_category_id')
 					->leftJoin('brands','products.brand_id','=','brands.pk_brand_id')
 					->leftJoin('item_types','products.type_id','=','item_types.pk_type_id')

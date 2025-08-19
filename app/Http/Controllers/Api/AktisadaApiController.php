@@ -111,6 +111,42 @@ class AktisadaApiController extends Controller
     */	
 	
 	
+	public function getUser(Request $request)
+    {
+		$rule=[ 
+			  'user_id' =>'required',
+        ];
+        
+        $validator = Validator::make($request->all(),$rule);
+        if ($validator->passes()) 
+        {
+
+			try
+			{
+				$usrs = User::where('pk_user_id',$request->user_id)->get();
+				if (!$usrs->isEmpty()) 
+				{
+					return response()->json(['message'=> 'User details successfully listed','user'=>$usrs,'status' => true]);
+				}else{
+					return response()->json(['message'=> 'User Not Found', 'status' => false]); 
+				}  
+			}catch(\Exception $e){
+				return response()->json(['message'=>$e->getMessage(), 'status' => false]);
+			}
+        }
+		else
+		{
+			return response()->json(['message'=>$validator->messages()->first(), 'status' => false]);
+		}
+    }
+    
+	/**
+    * Display a listing of the categorie sonly.
+    * Method: GET
+    * @return \Illuminate\Http\Response
+    */	
+	
+	
     public function getCategories()
     {
 		try
