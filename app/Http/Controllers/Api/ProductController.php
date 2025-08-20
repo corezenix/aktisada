@@ -40,6 +40,7 @@ class ProductController extends Controller
 			  'type_id' =>'required',
 			  'material_id' =>'required',
 			  'item_size_id' =>'required',
+			  'description'=>'required',
 			  'quantity' =>'required',
 			  'image_file' =>'required',
         ];
@@ -68,6 +69,7 @@ class ProductController extends Controller
 				  'material_id' =>$request->material_id,
 				  'item_size_id' =>$request->item_size_id,
 				  'quantity' =>$request->quantity,
+				  'description' =>$request->description,
 				  'image_file' =>$fname,
 				  'flush_type'=>$request->flush_type,
 				  'status'=>1

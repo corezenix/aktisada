@@ -149,6 +149,7 @@ class ProductController extends Controller
 			'user_id'=>'required',
 			'type_name'=>'required',
 			'material_type'=>'required',
+			'description'=>'required',
 			'item_size'=>'required',
 			'quantity'=>'required',
 			'image_file'=>'required',
@@ -185,6 +186,7 @@ class ProductController extends Controller
 				$pro->material_id=$request->material_type;
 				$pro->item_size_id=$request->item_size;
 				$pro->quantity=$request->quantity;
+				$pro->description=$request->description;
 				$pro->flush_type=$request->flush_type??null;
 				$pro->description=$request->description;
 				$pro->image_file = $fname;
