@@ -17,7 +17,7 @@ class Product extends Model
      */
 
      protected $fillable = [
-        'pk_product_id','product_title', 'user_id','category_id', 'brand_id', 'type_id',  'material_id', 'item_size', 'quantity', 'flush_type',
+        'pk_product_id','product_title', 'user_id','category_id', 'brand_id', 'type_id',  'material_id', 'item_size_id', 'quantity', 'flush_type',
 		'image_file', 'status' 
     ];
 	
