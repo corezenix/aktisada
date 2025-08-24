@@ -488,17 +488,18 @@ curl --location 'https://app.aktisada.com/api/v1/get-filters' \
 
 curl --location 'https://app.aktisada.com/api/v1/add-product' \
 --header 'Accept: application/ecmascript' \
---header 'Authorization: Bearer 178|YXddbfAqpWc5uXCGre1fPTAUv9EibA6UTiYK7nh533463fe2' \
+--header 'Authorization: Bearer 189|dMpXM17F1abw8T3p1hVj3gircpDTISiXbwRJSynZa4d7b343' \
 --form 'product_title="Testing Product 3"' \
 --form 'user_id="1"' \
 --form 'category_id="2"' \
 --form 'brand_id="1"' \
 --form 'type_id="2"' \
 --form 'material_id="2"' \
---form 'item_size="10x15x5 inch"' \
+--form 'item_size_id="1"' \
 --form 'quantity="5"' \
---form 'image_file=@"/C:/Users/Administrator/Pictures/a2.png"' \
---form 'flush_type=""'
+--form 'image_file=@"/C:/Users/Administrator/OneDrive/Pictures/a5.png"' \
+--form 'flush_type=""' \
+--form 'description="dsffsffd fdsfsdfsd fdsfdsfdsfdsf"'
 
 
 
@@ -513,13 +514,13 @@ curl --location 'https://app.aktisada.com/api/v1/add-product' \
         "brand_id": "1",
         "type_id": "2",
         "material_id": "2",
-        "item_size": "10x15x5 inch",
+        "item_size_id": "1",
         "quantity": "5",
-        "image_file": "products/551754161845.png",
+        "image_file": "products/321756015898.png",
         "flush_type": null,
         "status": 1,
-        "created_at": "2025-08-02T19:10:45.000000Z",
-        "pk_product_id": 3
+        "created_at": "2025-08-24T06:11:38.000000Z",
+        "pk_product_id": 6
     },
     "status": true
 }
@@ -657,7 +658,7 @@ curl --location 'https://app.aktisada.com/api/v1/edit-product' \
 
 curl --location 'https://app.aktisada.com/api/v1/update-product' \
 --header 'Accept: application/ecmascript' \
---header 'Authorization: Bearer 178|YXddbfAqpWc5uXCGre1fPTAUv9EibA6UTiYK7nh533463fe2' \
+--header 'Authorization: Bearer 189|dMpXM17F1abw8T3p1hVj3gircpDTISiXbwRJSynZa4d7b343' \
 --form 'product_id="2"' \
 --form 'product_title="This is testing product"' \
 --form 'user_id="1"' \
@@ -665,10 +666,12 @@ curl --location 'https://app.aktisada.com/api/v1/update-product' \
 --form 'brand_id="1"' \
 --form 'type_id="2"' \
 --form 'material_id="2"' \
---form 'item_size="10x15x5 inch"' \
+--form 'item_size_id="1"' \
 --form 'quantity="5"' \
 --form 'image_file=@"/C:/Users/Administrator/Pictures/a4.png"' \
---form 'flush_type=""'
+--form 'image_file=@"/C:/Users/Administrator/OneDrive/Pictures/a5.png"' \
+--form 'flush_type=""' \
+--form 'description="gdfdgdf gdfgdfgfd gdfgdfgdfg"'
 
 ** Response:
 
@@ -682,11 +685,11 @@ curl --location 'https://app.aktisada.com/api/v1/update-product' \
         "brand_id": "1",
         "type_id": "2",
         "material_id": "2",
-        "item_size": "10x15x5 inch",
+        "item_size_id": "1",
         "quantity": "5",
         "flush_type": null,
-        "description": null,
-        "image_file": "products/681754170863.png",
+        "description": "gdfdgdf gdfgdfgfd gdfgdfgdfg",
+        "image_file": "products/591756015812.png",
         "status": null,
         "created_at": "2025-08-02T19:09:41.000000Z"
     },
