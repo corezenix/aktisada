@@ -40,7 +40,6 @@ class ProductController extends Controller
 			  'type_id' =>'required',
 			  'material_id' =>'required',
 			  'item_size_id' =>'required',
-			  'description'=>'required',
 			  'quantity' =>'required',
 			  'image_file' =>'required',
         ];
@@ -277,7 +276,7 @@ public function updateProduct(Request $request)
 			  'brand_id'=>'required',
 			  'type_id' =>'required',
 			  'material_id' =>'required',
-			  'item_size' =>'required',
+			  'item_size_id' =>'required',
 			  'quantity' =>'required',
 			  'image_file' =>'required',
         ];
@@ -307,7 +306,7 @@ public function updateProduct(Request $request)
 				  $prod->brand_id=$request->brand_id;
 				  $prod->type_id =$request->type_id;
 				  $prod->material_id =$request->material_id;
-				  $prod->item_size =$request->item_size;
+				  $prod->item_size_id =$request->item_size_id;
 				  $prod->quantity =$request->quantity;
 				  $prod->image_file =$fname;
 				  $prod->flush_type=$request->flush_type;
@@ -323,7 +322,6 @@ public function updateProduct(Request $request)
             return response()->json(['message' => $validator->messages(), 'status' => false]);
         }
     }
-
 
 
 
