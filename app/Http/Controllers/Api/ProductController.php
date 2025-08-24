@@ -309,6 +309,7 @@ public function updateProduct(Request $request)
 				  $prod->item_size_id =$request->item_size_id;
 				  $prod->quantity =$request->quantity;
 				  $prod->image_file =$fname;
+				  $prod->description =$request->description;
 				  $prod->flush_type=$request->flush_type;
 				  $result=$prod->save();
 				  
