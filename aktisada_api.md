@@ -498,7 +498,6 @@ curl --location 'https://app.aktisada.com/api/v1/add-product' \
 --form 'item_size_id="1"' \
 --form 'quantity="5"' \
 --form 'image_file=@"/C:/Users/Administrator/OneDrive/Pictures/a5.png"' \
---form 'flush_type=""' \
 --form 'description="dsffsffd fdsfsdfsd fdsfdsfdsfdsf"'
 
 
@@ -517,7 +516,6 @@ curl --location 'https://app.aktisada.com/api/v1/add-product' \
         "item_size_id": "1",
         "quantity": "5",
         "image_file": "products/321756015898.png",
-        "flush_type": null,
         "status": 1,
         "created_at": "2025-08-24T06:11:38.000000Z",
         "pk_product_id": 6
@@ -552,46 +550,313 @@ curl --location 'https://app.aktisada.com/api/v1/add-brand' \
 
 curl --location 'https://app.aktisada.com/api/v1/product-list' \
 --header 'Accept: application/json' \
---header 'Authorization: Bearer 178|YXddbfAqpWc5uXCGre1fPTAUv9EibA6UTiYK7nh533463fe2' \
---form 'category_id="1"' \
---form 'brand_id="2"' \
+--header 'Authorization: ••••••' \
+--form 'category_id="4"' \
+--form 'brand_id=""' \
 --form 'type_id=""' \
 --form 'material_id=""' \
---form 'user_id="1"' \
---form 'item_size="10x15x5 inch"'
+--form 'user_id=""' \
+--form 'item_size=""' \
+--form 'search=""'
 
 **Response:
 
-{
+
     "message": "products Successfully listed",
-    "data": [
-        {
-            "pk_product_id": 2,
-            "product_title": "Testing Product 2",
-            "category_id": 1,
-            "user_id": 1,
-            "brand_id": 2,
-            "type_id": 1,
-            "material_id": 1,
-            "item_size": "10x15x5 inch",
-            "quantity": 10,
-            "flush_type": null,
-            "description": null,
-            "image_file": "products/121754161781.png",
-            "status": null,
-            "created_at": "2025-08-02T19:09:41.000000Z",
-            "pk_category_id": 1,
-            "category": "bbbbbbbbbbbbbb",
-            "pk_brand_id": 2,
-            "brand_name": "yyyyyyyyyyyy",
-            "pk_type_id": 1,
-            "type_name": "mmmmmmmmmm",
-            "pk_material_id": 1,
-            "material_name": "mmmmmmmmmmmm",
-            "pk_user_id": 1,
-            "shop_name": "Shaji Enter prices"
-        }
-    ],
+    "data": {
+        "current_page": 1,
+        "data": [
+            {
+                "pk_product_id": 11,
+                "product_title": "test product 2",
+                "category_id": 4,
+                "user_id": 6,
+                "brand_id": 8,
+                "type_id": 4,
+                "material_id": 2,
+                "item_size_id": "1",
+                "quantity": 20,
+                "description": "this is a test product 2",
+                "image_file": "products/951756063587.jpg",
+                "status": 1,
+                "created_at": "2025-08-24T19:26:27.000000Z",
+                "pk_category_id": 4,
+                "category": "Tiles",
+                "pk_brand_id": 8,
+                "brand_name": "test brand",
+                "pk_type_id": 4,
+                "type_name": "Soluble salt",
+                "pk_material_id": 2,
+                "material_name": "High glossy",
+                "pk_size_id": 1,
+                "item_size": "800x800",
+                "image_path": "https://app.aktisada.com/uploads/products/951756063587.jpg",
+                "user": {
+                    "pk_user_id": 6,
+                    "shop_name": "Haris",
+                    "contact_person": "testing",
+                    "country_code": 91,
+                    "mobile": "9995051050",
+                    "user_mobile": "919995051050",
+                    "whatsapp_no": "91999501050",
+                    "email": "harispendrive1@gmail.com",
+                    "role_id": 2,
+                    "address": null,
+                    "location": "Manipuram",
+                    "city": "koduvally",
+                    "district": "calicut",
+                    "state": "kerala",
+                    "pincode": null,
+                    "status": 1,
+                    "created_by": null,
+                    "created_at": "2025-08-16T09:46:06.000000Z",
+                    "updated_at": "2025-08-17T09:52:21.000000Z"
+                }
+            },
+            {
+                "pk_product_id": 12,
+                "product_title": "paper",
+                "category_id": 4,
+                "user_id": 6,
+                "brand_id": 5,
+                "type_id": 4,
+                "material_id": 3,
+                "item_size_id": "1",
+                "quantity": 245,
+                "description": "hshhe",
+                "image_file": "products/831756095409.jpg",
+                "status": 1,
+                "created_at": "2025-08-25T04:16:49.000000Z",
+                "pk_category_id": 4,
+                "category": "Tiles",
+                "pk_brand_id": 5,
+                "brand_name": "Somany",
+                "pk_type_id": 4,
+                "type_name": "Soluble salt",
+                "pk_material_id": 3,
+                "material_name": "Glossy",
+                "pk_size_id": 1,
+                "item_size": "800x800",
+                "image_path": "https://app.aktisada.com/uploads/products/831756095409.jpg",
+                "user": {
+                    "pk_user_id": 6,
+                    "shop_name": "Haris",
+                    "contact_person": "testing",
+                    "country_code": 91,
+                    "mobile": "9995051050",
+                    "user_mobile": "919995051050",
+                    "whatsapp_no": "91999501050",
+                    "email": "harispendrive1@gmail.com",
+                    "role_id": 2,
+                    "address": null,
+                    "location": "Manipuram",
+                    "city": "koduvally",
+                    "district": "calicut",
+                    "state": "kerala",
+                    "pincode": null,
+                    "status": 1,
+                    "created_by": null,
+                    "created_at": "2025-08-16T09:46:06.000000Z",
+                    "updated_at": "2025-08-17T09:52:21.000000Z"
+                }
+            },
+            {
+                "pk_product_id": 13,
+                "product_title": "hff",
+                "category_id": 4,
+                "user_id": 6,
+                "brand_id": 5,
+                "type_id": 4,
+                "material_id": 3,
+                "item_size_id": "1",
+                "quantity": 67,
+                "description": "tsy",
+                "image_file": "products/211756096203.jpg",
+                "status": 1,
+                "created_at": "2025-08-25T04:30:03.000000Z",
+                "pk_category_id": 4,
+                "category": "Tiles",
+                "pk_brand_id": 5,
+                "brand_name": "Somany",
+                "pk_type_id": 4,
+                "type_name": "Soluble salt",
+                "pk_material_id": 3,
+                "material_name": "Glossy",
+                "pk_size_id": 1,
+                "item_size": "800x800",
+                "image_path": "https://app.aktisada.com/uploads/products/211756096203.jpg",
+                "user": {
+                    "pk_user_id": 6,
+                    "shop_name": "Haris",
+                    "contact_person": "testing",
+                    "country_code": 91,
+                    "mobile": "9995051050",
+                    "user_mobile": "919995051050",
+                    "whatsapp_no": "91999501050",
+                    "email": "harispendrive1@gmail.com",
+                    "role_id": 2,
+                    "address": null,
+                    "location": "Manipuram",
+                    "city": "koduvally",
+                    "district": "calicut",
+                    "state": "kerala",
+                    "pincode": null,
+                    "status": 1,
+                    "created_by": null,
+                    "created_at": "2025-08-16T09:46:06.000000Z",
+                    "updated_at": "2025-08-17T09:52:21.000000Z"
+                }
+            },
+            {
+                "pk_product_id": 14,
+                "product_title": "teasing",
+                "category_id": 4,
+                "user_id": 6,
+                "brand_id": 11,
+                "type_id": 5,
+                "material_id": 3,
+                "item_size_id": "1",
+                "quantity": 500,
+                "description": "fiff",
+                "image_file": "products/451756114513.jpg",
+                "status": 1,
+                "created_at": "2025-08-25T09:35:13.000000Z",
+                "pk_category_id": 4,
+                "category": "Tiles",
+                "pk_brand_id": 11,
+                "brand_name": "test brand 4",
+                "pk_type_id": 5,
+                "type_name": "Full body Vitrified",
+                "pk_material_id": 3,
+                "material_name": "Glossy",
+                "pk_size_id": 1,
+                "item_size": "800x800",
+                "image_path": "https://app.aktisada.com/uploads/products/451756114513.jpg",
+                "user": {
+                    "pk_user_id": 6,
+                    "shop_name": "Haris",
+                    "contact_person": "testing",
+                    "country_code": 91,
+                    "mobile": "9995051050",
+                    "user_mobile": "919995051050",
+                    "whatsapp_no": "91999501050",
+                    "email": "harispendrive1@gmail.com",
+                    "role_id": 2,
+                    "address": null,
+                    "location": "Manipuram",
+                    "city": "koduvally",
+                    "district": "calicut",
+                    "state": "kerala",
+                    "pincode": null,
+                    "status": 1,
+                    "created_by": null,
+                    "created_at": "2025-08-16T09:46:06.000000Z",
+                    "updated_at": "2025-08-17T09:52:21.000000Z"
+                }
+            },
+            {
+                "pk_product_id": 15,
+                "product_title": "gfbbj",
+                "category_id": 4,
+                "user_id": 7,
+                "brand_id": 8,
+                "type_id": 4,
+                "material_id": 2,
+                "item_size_id": "1",
+                "quantity": 50,
+                "description": "dhvh",
+                "image_file": "products/741756115224.jpg",
+                "status": 1,
+                "created_at": "2025-08-25T09:47:04.000000Z",
+                "pk_category_id": 4,
+                "category": "Tiles",
+                "pk_brand_id": 8,
+                "brand_name": "test brand",
+                "pk_type_id": 4,
+                "type_name": "Soluble salt",
+                "pk_material_id": 2,
+                "material_name": "High glossy",
+                "pk_size_id": 1,
+                "item_size": "800x800",
+                "image_path": "https://app.aktisada.com/uploads/products/741756115224.jpg",
+                "user": {
+                    "pk_user_id": 7,
+                    "shop_name": "SF",
+                    "contact_person": "testingRE",
+                    "country_code": 91,
+                    "mobile": "9995051051",
+                    "user_mobile": "919995051051",
+                    "whatsapp_no": "9995051051",
+                    "email": "haris@getlead.co.uk",
+                    "role_id": 2,
+                    "address": null,
+                    "location": "DHR",
+                    "city": "D",
+                    "district": "calicut",
+                    "state": "kerala",
+                    "pincode": null,
+                    "status": 1,
+                    "created_by": null,
+                    "created_at": "2025-08-25T09:44:41.000000Z",
+                    "updated_at": "2025-08-25T09:44:41.000000Z"
+                }
+            },
+            {
+                "pk_product_id": 17,
+                "product_title": "ttttt",
+                "category_id": 4,
+                "user_id": 8,
+                "brand_id": 20,
+                "type_id": 6,
+                "material_id": 3,
+                "item_size_id": "2",
+                "quantity": 250,
+                "description": "fbvgjnas",
+                "image_file": "products/631756302885.jpg",
+                "status": 1,
+                "created_at": "2025-08-27T13:54:45.000000Z",
+                "pk_category_id": 4,
+                "category": "Tiles",
+                "pk_brand_id": 20,
+                "brand_name": "At",
+                "pk_type_id": 6,
+                "type_name": "1200x1200",
+                "pk_material_id": 3,
+                "material_name": "Glossy",
+                "pk_size_id": 2,
+                "item_size": "600x600",
+                "image_path": "https://app.aktisada.com/uploads/products/631756302885.jpg",
+                "user": {
+                    "pk_user_id": 8,
+                    "shop_name": "jithin",
+                    "contact_person": "core",
+                    "country_code": 91,
+                    "mobile": "9633578798",
+                    "user_mobile": "919633578798",
+                    "whatsapp_no": "9633578798",
+                    "email": "koodathil.jithin@gmail.com",
+                    "role_id": 2,
+                    "address": null,
+                    "location": "kakkodi",
+                    "city": "calicut",
+                    "district": "calicut",
+                    "state": "kerala",
+                    "pincode": null,
+                    "status": 1,
+                    "created_by": null,
+                    "created_at": "2025-08-26T14:17:13.000000Z",
+                    "updated_at": "2025-08-26T14:17:13.000000Z"
+                }
+            }
+        ],
+        "first_page_url": "https://app.aktisada.com/api/v1/product-list?page=1",
+        "from": 1,
+        "next_page_url": null,
+        "path": "https://app.aktisada.com/api/v1/product-list",
+        "per_page": 15,
+        "prev_page_url": null,
+        "to": 6
+    },
     "status": true
 }
 
@@ -642,7 +907,6 @@ curl --location 'https://app.aktisada.com/api/v1/edit-product' \
             "material_id": 1,
             "item_size": "10x15x5 inch",
             "quantity": 10,
-            "flush_type": null,
             "description": null,
             "image_file": "products/121754161781.png",
             "status": null,
@@ -670,7 +934,6 @@ curl --location 'https://app.aktisada.com/api/v1/update-product' \
 --form 'quantity="5"' \
 --form 'image_file=@"/C:/Users/Administrator/Pictures/a4.png"' \
 --form 'image_file=@"/C:/Users/Administrator/OneDrive/Pictures/a5.png"' \
---form 'flush_type=""' \
 --form 'description="gdfdgdf gdfgdfgfd gdfgdfgdfg"'
 
 ** Response:

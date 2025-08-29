@@ -107,17 +107,6 @@ class ProductController extends Controller
         {
 			try
 			{
-				/*$query=Product::with('user')->select('products.*','category.pk_category_id','category.category','brands.pk_brand_id','brands.brand_name',
-					'item_types.pk_type_id','item_types.type_name','materials.pk_material_id','materials.material_name','item_sizes.pk_size_id','item_sizes.item_size',
-					'users.pk_user_id','users.shop_name','users.country_code','users.mobile','users.whatsapp_no')
-					->leftJoin('category','products.category_id','=','category.pk_category_id')
-					->leftJoin('brands','products.brand_id','=','brands.pk_brand_id')
-					->leftJoin('item_types','products.type_id','=','item_types.pk_type_id')
-					->leftJoin('materials','products.material_id','=','materials.pk_material_id')
-					->leftJoin('item_sizes','products.item_size_id','=','item_sizes.pk_size_id')
-					->leftJoin('users','products.user_id','=','users.pk_user_id')
-					->where('products.category_id',$request->category_id);*/
-
 					$query=Product::with('user')->select('products.*','category.pk_category_id','category.category','brands.pk_brand_id','brands.brand_name',
 					'item_types.pk_type_id','item_types.type_name','materials.pk_material_id','materials.material_name','item_sizes.pk_size_id','item_sizes.item_size')
 					->leftJoin('category','products.category_id','=','category.pk_category_id')
@@ -318,7 +307,6 @@ public function updateProduct(Request $request)
 				  $prod->quantity =$request->quantity;
 				  $prod->image_file =$fname;
 				  $prod->description =$request->description;
-				  $prod->flush_type=$request->flush_type;
 				  $result=$prod->save();
 				  
                   return response()->json(['message' => 'Product Successfully updated','data'=>$prod,'status' => true]); 
