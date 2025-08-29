@@ -137,7 +137,6 @@
 									<th>Material</th>
 									<th>Size</th>
 									<th>Qty</th>
-									<th>Flush Type</th>
 									<th>Description</th>
 									<th>Status</th>
 									<th>Action</th>
@@ -340,7 +339,6 @@ var table2 = $('#datatable').DataTable({
 		   {data: 'material_name', name: 'material_name'},
 		   {data: 'item_size', name: 'item_size'},
 		   {data: 'quantity', name: 'quantity'},
-		   {data: 'flush_type', name: 'flush_type'},
 		   {data: 'description', name: 'description'},
 		   {data: 'status', name: 'status'},
 		   {data: 'action', name: 'action', orderable: false, searchable: false}
