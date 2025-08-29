@@ -222,7 +222,7 @@
 					<label for="user_role" class="form-label">Select Role<span class="required">*</span></label>
 					<select  class="form-control"  name="role_id" id="role_id" placeholder="Role" required>
 					<!--<option value="" > Select Role </option>-->
-					<option value="1" selected> User </option>
+					<option value="2" selected> User </option>
 					</select>
 				</div>
 			</div>
