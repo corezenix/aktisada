@@ -19,12 +19,12 @@ class PolicyController extends Controller
      */
     public function index()
     {
-        return view('admin.policy.privacy');
+        return view('policy.privacy');
     }
 	
 
     public function terms()
     {
-        return view('admin.policy.terms');
+        return view('policy.terms');
     } 
 }
