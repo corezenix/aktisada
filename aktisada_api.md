@@ -950,7 +950,6 @@ curl --location 'https://app.aktisada.com/api/v1/update-product' \
         "material_id": "2",
         "item_size_id": "1",
         "quantity": "5",
-        "flush_type": null,
         "description": "gdfdgdf gdfgdfgfd gdfgdfgdfg",
         "image_file": "products/591756015812.png",
         "status": null,
