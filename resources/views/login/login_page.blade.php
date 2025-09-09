@@ -61,8 +61,7 @@
 					<!--begin::Form-->
 					
 						<div class="pb-5 pt-lg-0 pt-5 mx-auto">
-							<img class="logo-mob" src="{{url('login/assets/media/mob-logo.svg')}}" width="80%">
-						
+			
 							<h3 class="sign-title"><span style="color:#ee3448;">AKTI</span>SADA</h3>
 							<p class="pt-10" style="font-size:16px;" > Log in to your account</p> 
 						</div>
