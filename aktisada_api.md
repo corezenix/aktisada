@@ -516,15 +516,15 @@ curl --location 'https://app.aktisada.com/api/v1/add-product' \
         "material_id": "2",
         "item_size_id": "1",
         "quantity": "5",
-        "image_file": "products/321756015898.png",
+        "description": "dsffsffd fdsfsdfsd fdsfdsfdsfdsf",
+        "image_file": "products/741756016024.png",
         "flush_type": null,
         "status": 1,
-        "created_at": "2025-08-24T06:11:38.000000Z",
-        "pk_product_id": 6
+        "created_at": "2025-08-24T06:13:44.000000Z",
+        "pk_product_id": 7
     },
     "status": true
 }
-
 
 
 **7. add branch

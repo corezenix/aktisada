@@ -1,0 +1,12 @@
+Shop Name
+Contact Person
+mobile
+whatsapp
+email
+address
+location
+city
+district
+state
+pincode
+https://www.youtube.com/watch?v=RNg7_r821YE
