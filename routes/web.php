@@ -14,7 +14,7 @@ use App\Http\Controllers\Admin\BrandTypeMaterialController;
 use App\Http\Controllers\Admin\ProductController;
 
 use App\Http\Controllers\Auth\LoginController;
-
+use App\Http\Controllers\Admin\PolicyController;
 
 Route::get('/', function () {
     //return redirect('login');
@@ -34,6 +34,13 @@ Route::controller(LoginController::class)->group(function() {
 	Route::post('logout', 'logout')->name('logout');
 	Route::get('logout', 'logout')->name('logout');
 });
+
+
+Route::controller(PolicyController::class)->group(function() {
+	Route::get('/privacy', 'index')->name('privacy');
+	Route::get('/terms', 'terms')->name('terms');
+});
+
 
 Route::group(['prefix'=>'admin','as'=>'admin.','middleware' => 'authware'], function()
 {
@@ -113,6 +120,8 @@ Route::controller(ProductController::class)->group(function() {
 	Route::get('/delete-product/{id}', 'destroy')->name('delete-product');
 	//Route::get('/act-deact-slide-image/{op}/{id}', 'activateDeactivate')->name('act-deact-slide-image');	
 });
+
+
 
 
 

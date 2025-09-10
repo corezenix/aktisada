@@ -277,6 +277,12 @@ class AktisadaApiController extends Controller
         $validator = Validator::make($request->all(),$rule);
         if ($validator->passes()) 
         {
+
+			$cnt=Brand::where(strtoupper('brand_name'),strtoupper($request->brand_name))->count();
+			if($cnt>0)
+			{
+				return response()->json(['message'=>"Brand already exists. Try again with new one.", 'status' => false]);
+			}
  
 			try
 			{
@@ -287,7 +293,7 @@ class AktisadaApiController extends Controller
 				$result=Brand::create($data);
 				if($result)
 				{
-					return response()->json(['message'=> 'Detild Successfully listed','data'=>$result,'status' => true]);
+					return response()->json(['message'=> 'Brand successfully added','data'=>$result,'status' => true]);
 				}
 				else
 				{
