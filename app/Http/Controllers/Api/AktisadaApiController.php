@@ -6,11 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Facades\FileUpload;
 
-use App\Models\ScratchBranch;
-use App\Models\ScratchWebCustomer;
-use App\Models\ScratchOffer;
-use App\Models\ScratchOffersListing;
-use App\Models\ScratchType;
 use App\Models\SlideImage;
 use App\Models\UserOtp;
 use App\Models\User;
@@ -20,16 +15,10 @@ use App\Models\ItemType;
 use App\Models\ItemSize;
 use App\Models\Material;
 
-
-use App\Models\Settings;
-
-use App\Common\Variables;
+/*
 use App\Common\WhatsappSend;
 use App\Services\WhatsappService;
-use App\Services\WhatsappGiftConfirmMsgService;
-use App\Notification\WhatsappGiftConfirmSend;
-
-use App\Jobs\SentCrmServiceJob;
+*/
 
 use Carbon\Carbon;
 use Hash;
@@ -55,6 +44,12 @@ class AktisadaApiController extends Controller
             'password'=>'required'
         ];
         
+		$ver=AppVersion::where('id',1)->first();
+		if($ver)
+			$version=$ver->app_version;
+		else
+			$version="1.0.1";
+				
         $validator = Validator::make($input,$rule);
         if ($validator->passes()) 
         {
@@ -63,7 +58,9 @@ class AktisadaApiController extends Controller
                 $user = User::where('status',1)->where('mobile', $request->mobile)->first();
                 if ($user && Hash::check($request->password,$user->password)) {
 					$success['token'] =  $user->createToken('aktisada')->plainTextToken; 
-					$success['user'] =  $user;	
+					$success['user'] =  $user;
+					$success['version']=$version;
+								
                     return response()->json(['message' => 'Logged Successfully','data'=>$success,'status' => true]); 
                 }else
                     return response()->json(['message' => 'Invalid Login', 'status' => false]); 
@@ -76,6 +73,66 @@ class AktisadaApiController extends Controller
         }
     }
 	
+	//to check existing mobile and password
+	
+	public function checkUserExist(Request $request)
+    {
+        $input=$request->all();
+        $rule=[ 
+            'mobile' => 'required',
+            'password'=>'required'
+        ];
+        
+        $validator = Validator::make($input,$rule);
+        if ($validator->passes()) 
+        {
+            try
+            {
+                $user = User::where('status',1)->where('mobile', $request->mobile)->first();
+                if ($user && Hash::check($request->password,$user->password)) {
+					$success['user'] =  $user;	
+                    return response()->json(['message' => 'User Found!','data'=>$success,'status' => true]); 
+                }else
+                    return response()->json(['message' => 'User  were not found!', 'status' => false]); 
+			
+            }catch(\Exception $e){
+                return response()->json(['message' => $e->getMessage(), 'status' => false]);
+            }
+        } else{
+            return response()->json(['message' => $validator->messages(), 'status' => false]);
+        }
+    }
+	
+
+//to check existing mobile and password
+	
+	public function checkAppVersion(Request $request)
+    {
+        $input=$request->all();
+        $rule=[ 
+            'app_version' => 'required',
+        ];
+        
+        $validator = Validator::make($input,$rule);
+        if ($validator->passes()) 
+        {
+            try
+            {
+                $ver = AppVersion::where('app_version',$request->app_version)->first();
+                if ($ver) {
+					
+					return response()->json(['message' => 'Success!','version'=>$ver->app_version,'status' => true]); 
+                }else
+                    return response()->json(['message' => 'Invalid version!', 'status' => false]); 
+			
+            }catch(\Exception $e){
+                return response()->json(['message' => $e->getMessage(), 'status' => false]);
+            }
+        } else{
+            return response()->json(['message' => $validator->messages(), 'status' => false]);
+        }
+    }
+
 	/**
     * Display a listing of the lides.
     * Method: GET

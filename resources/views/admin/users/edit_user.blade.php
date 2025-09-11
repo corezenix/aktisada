@@ -1,8 +1,7 @@
 <form id="formUpdateUser">
 			@csrf
 			
-			<input type="hidden" name="user_id" value="{{$usr->id}}">
-
+			<input type="hidden" name="user_id" value="{{$usr->pk_user_id}}">
 			
 			<div class="row mb-2" >
 				<div class="col-12 col-lg-12 col-xl-12 col-xxl-12">
@@ -18,16 +17,10 @@
 				</div>
 			</div>
 			<div class="row mb-2" >
-				<!--<div class="col-12 col-lg-6 col-xl-6 col-xxl-6">
-					<label for="mobile" class="form-label">Mobile<span class="required">*</span></label>
-					<input type="hidden" class="form-control" name="country_code_edit" id="country_code_edit" value="91"  required>
-					<br>
-					<input type="tel" class="form-control" name="mobile_edit" id="mobile_edit" minlength=6 maxlength=15 value="+{{$usr->country_code.$usr->mobile}}" required>
-				</div>-->
 				
 				<div class="col-12 col-lg-2 col-xl-2 col-xxl-2">
 					<label for="mobile" class="form-label">Code<span class="required">*</span></label>
-					<select class="form-control" name="country_code" id="country_code" required>
+					<select class="form-control" name="country_code_edit" id="country_code_edit" required>
 					<!--<option value="">Code</option>-->
 					<option value="91" selected>+91</option>
 					</select>
