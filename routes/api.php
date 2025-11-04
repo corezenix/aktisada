@@ -17,6 +17,13 @@ Route::controller(AktisadaApiController::class)->group(function() {
 	Route::post('login', 'login')->name('login');
 });
 
+Route::controller(AktisadaApiController::class)->group(function()
+	{
+		Route::post('check-user-exist', 'checkUserExist')->name('check-user-exist');
+		Route::post('check-app-version', 'checkAppVersion')->name('check-app-version');
+	});
+
+
 Route::middleware('auth:sanctum')->group( function () {
 
 	Route::controller(AktisadaApiController::class)->group(function()
@@ -29,7 +36,6 @@ Route::middleware('auth:sanctum')->group( function () {
 		Route::post('get-user', 'getUser')->name('get-user');
 		Route::post('check-user-exist', 'checkUserExist')->name('check-user-exist');
 		Route::post('check-app-version', 'checkAppVersion')->name('check-app-version');
-		
 	});
 	
 	Route::controller(ProductController::class)->group(function()
@@ -44,7 +50,6 @@ Route::middleware('auth:sanctum')->group( function () {
 		
 	});
 
-	
 
 });
 

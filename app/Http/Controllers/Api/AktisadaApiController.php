@@ -14,6 +14,7 @@ use App\Models\Category;
 use App\Models\ItemType;
 use App\Models\ItemSize;
 use App\Models\Material;
+use App\Models\AppVersion;
 
 /*
 use App\Common\WhatsappSend;
