@@ -275,7 +275,6 @@ public function updateProduct(Request $request)
 			  'material_id' =>'required',
 			  'item_size_id' =>'required',
 			  'quantity' =>'required',
-			  'image_file' =>'required',
         ];
         
         $validator = Validator::make($request->all(),$rule);

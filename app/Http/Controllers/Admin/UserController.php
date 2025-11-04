@@ -398,8 +398,8 @@ public function changePassword(Request $request)
 {
 	
 	$validator=validator::make($request->all(),[
-		'password' => 'required|max:15',
-        'confirm_password' => 'required|max:15',
+		'ch_password' => 'required|max:15',
+        'conf_password' => 'required|max:15',
         ]);
         if ($validator->fails()) 
 		{
@@ -410,7 +410,7 @@ public function changePassword(Request $request)
 	
 			$user_id=$request->user_id;
 			
-			$npas=$request->password;
+			$npas=$request->ch_password;
 			$data=['password'=>Hash::make($npas)];
 			
 			$result=User::where('pk_user_id',$user_id)->update($data);

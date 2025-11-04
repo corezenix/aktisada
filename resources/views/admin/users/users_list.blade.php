@@ -270,14 +270,14 @@
 					<div class="row mb-2" >
 						<div class="col-12 col-lg-12 col-xl-12 col-xxl-12">
 							<label for="address" class="form-label">Password</label>
-							<input type="text" class="form-control"  name="password" id="password" placeholder="Password" required>
+							<input type="text" class="form-control"  name="ch_password" id="ch_password" minlength=6  placeholder="Password" required>
 						</div>
 					</div>
 
 					<div class="row mb-2" >
 						<div class="col-12 col-lg-12 col-xl-12 col-xxl-12">
 							<label>Confirm Password<span class="required">*</span></label>
-							<input type="text" class="form-control"  name="confirm_password" id="confirm_password" value="" placeholder="confirm Password" required>
+							<input type="text" class="form-control"  name="conf_password" id="conf_password" value="" placeholder="confirm Password" required>
 						</div>
 					</div>
 					<div class="row mb-2" >
@@ -607,16 +607,16 @@ $('#datatable tbody').on('click','.change-pass',function()
 var validator=$('#formChangePassword').validate({ 
 	
 	rules: {
-		password: {required: true,minlength:6, maxlength:20},
-		confirm_password: {required: true,minlength:6, maxlength:20,
-		equalTo: "#password"
-		},
+		ch_password: {required: true,minlength:6},
+		conf_password: {required: true,minlength:6,
+		equalTo: "#ch_password"
+		}
 	},
 
 	submitHandler: function(form) 
 	{
 
-		if($("#password").val()!=$("#confirm_password").val())
+		if($("#ch_password").val()!=$("#conf_password").val())
 		{
 			$("#msg_err").html("Password does not match!!!");
 		}

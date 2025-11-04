@@ -27,6 +27,8 @@ Route::middleware('auth:sanctum')->group( function () {
 		Route::post('add-brand', 'addBrand')->name('add-brand');
 		Route::post('get-filters', 'getFilters')->name('get-filters');
 		Route::post('get-user', 'getUser')->name('get-user');
+		Route::post('check-user-exist', 'checkUserExist')->name('check-user-exist');
+		Route::post('check-app-version', 'checkAppVersion')->name('check-app-version');
 		
 	});
 	
