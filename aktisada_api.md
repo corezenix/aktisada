@@ -1078,3 +1078,61 @@ curl --location 'https://app.aktisada.com/api/v1/get-my-products' \
     },
     "status": true
 }
+
+
+** check-user-exist
+** to check the user is exist or not ( some times change password, mobile)
+
+curl --location 'https://app.aktisada.com/api/v1/check-user-exist' \
+--header 'Accept: application/json' \
+--form 'mobile="1234567899"' \
+--form 'password="123456"'
+
+**Response
+
+{
+    "message": "User Found!",
+    "data": {
+        "user": {
+            "pk_user_id": 1,
+            "shop_name": "Shaji Enter prices",
+            "contact_person": "shaji",
+            "country_code": 91,
+            "mobile": "1234567899",
+            "user_mobile": "911234567899",
+            "whatsapp_no": "1234567899",
+            "email": "shaji@gmail.com",
+            "role_id": 0,
+            "address": "testing",
+            "location": "karanthur",
+            "city": "kunnamangalam",
+            "district": "kozhikode",
+            "state": "kerala",
+            "pincode": null,
+            "status": 1,
+            "created_by": 0,
+            "created_at": "2025-08-02T09:23:59.000000Z",
+            "updated_at": "2025-08-04T16:29:53.000000Z"
+        }
+    },
+    "status": true
+}
+
+** check-app-version
+** to check app-version ( if invalid version to forcefully update app from playstore)
+
+curl --location 'https://app.aktisada.com/api/v1/check-app-version' \
+--form 'app_version="1.0.1"'
+
+**Response
+{
+    "message": "Success!",
+    "version": "1.0.1",
+    "status": true
+}
+
+
+
+
+
+

@@ -307,8 +307,14 @@ public function updateProduct(Request $request)
 				  $prod->image_file =$fname;
 				  $prod->description =$request->description;
 				  $result=$prod->save();
-				  
-                  return response()->json(['message' => 'Product Successfully updated','data'=>$prod,'status' => true]); 
+				  if($result)
+				  {
+                  		return response()->json(['message' => 'Product Successfully updated','data'=>$prod,'status' => true]); 
+				  }
+				  else
+				  {
+						return response()->json(['message' => 'Something wrong, try again','data'=>[],'status' => false]); 
+				  }
                
 			
             }catch(\Exception $e){
