@@ -65,6 +65,7 @@
             </div> 
 		  
 			<h4>AKTISADA</h4>
+
             <!--<form class="searchbar">
                 <div class="position-absolute top-50 translate-middle-y search-icon ms-3"><i class="bi bi-search"></i></div>
                 <input class="form-control" type="text" placeholder="Type here to search">
@@ -118,14 +119,15 @@
       </header>
        <!--end top header-->
 	   
-	@if(Auth::user()->int_role_id==0)
-		@include('layouts.admin_sidebar');
-	@elseif(Auth::user()->int_role_id==1)
+	@if(Auth::user()->role_id==1)
 		@include('layouts.user_sidebar');
-	@elseif(Auth::user()->int_role_id==2)
+	@elseif(Auth::user()->role_id==2)
        @include('layouts.user_sidebar');
+	@elseif(Auth::user()->role_id==3)
+       @include('layouts.subuser_sidebar');
+	  
    @else	
-       @include('layouts.shops_sidebar');
+       @include('layouts.admin_sidebar');
    
 	@endif
        <!--start content-->

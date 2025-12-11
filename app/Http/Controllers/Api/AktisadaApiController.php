@@ -50,7 +50,8 @@ class AktisadaApiController extends Controller
 			$version=$ver->app_version;
 		else
 			$version="1.0.1";
-				
+		
+		$comment="Role 0-Super admin, 2-User, 3-Sub user";
         $validator = Validator::make($input,$rule);
         if ($validator->passes()) 
         {
@@ -61,16 +62,17 @@ class AktisadaApiController extends Controller
 					$success['token'] =  $user->createToken('aktisada')->plainTextToken; 
 					$success['user'] =  $user;
 					$success['version']=$version;
-								
-                    return response()->json(['message' => 'Logged Successfully','data'=>$success,'status' => true]); 
+					
+													
+                    return response()->json(['message' => 'Logged Successfully','data'=>$success, 'comment'=>$comment,'status' => true]); 
                 }else
-                    return response()->json(['message' => 'Invalid Login', 'status' => false]); 
+                    return response()->json(['message' => 'Invalid Login','comment'=>$comment, 'status' => false]); 
 			
             }catch(\Exception $e){
-                return response()->json(['message' => $e->getMessage(), 'status' => false]);
+                return response()->json(['message' => $e->getMessage(),'comment'=>$comment, 'status' => false]);
             }
         } else{
-            return response()->json(['message' => $validator->messages(), 'status' => false]);
+            return response()->json(['message' => $validator->messages(),'comment'=>$comment, 'status' => false]);
         }
     }
 	

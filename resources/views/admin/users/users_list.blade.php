@@ -221,13 +221,13 @@
 				<div class="col-12 col-lg-12 col-xl-12 col-xxl-12">
 					<label for="user_role" class="form-label">Select Role<span class="required">*</span></label>
 					<select  class="form-control"  name="role_id" id="role_id" placeholder="Role" required>
-					<!--<option value="" > Select Role </option>-->
-					<option value="2" selected> User </option>
+					<option value="" selected> Select Role </option>
+					<option value="2" > User </option>
+					<option value="3" > Sub User </option>
 					</select>
 				</div>
 			</div>
-			
-			
+						
 			<div class="row mb-2">
 				<div class="col-lg-12 col-xl-12 col-xxl-12 text-end">
 				<button type="button" class="btn btn-danger btn-offcanvas-close" data-bs-dismiss="offcanvas" aria-label="Close">Close</button>
@@ -438,7 +438,7 @@ var table = $('#datatable').DataTable({
 			{"data": "mobile" },
 			{"data": "whatsapp_no" },
 			{"data": "email" },
-			{"data": "role_id" },
+			{"data": "role" },
 			{"data": "address" },
 			{"data": "location" },
 			{"data": "city" },

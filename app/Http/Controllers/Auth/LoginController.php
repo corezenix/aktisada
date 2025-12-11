@@ -122,6 +122,10 @@ class LoginController extends Controller
 					{
 						 return redirect('users/dashboard');
 					}
+					else if($user->role_id == User::SUBUSER)
+					{
+						 return redirect('admin/products');
+					}
 					
 				}
 				else

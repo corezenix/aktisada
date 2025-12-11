@@ -142,6 +142,22 @@ class UserController extends Controller
 			
 			return $status;
         })
+		->addColumn('role', function ($row) {
+            if ($row->role_id==2) {
+                $status='<span class="badge rounded-pill bg-primary">User</span>';
+            } 
+			elseif ($row->role_id==3)
+				{
+                $status='<span class="badge rounded-pill bg-info">Sub User</span>';
+            }
+			else
+				{
+                $status='<span class="badge rounded-pill bg-success">Sup.Admin</span>';
+            }
+			
+			
+			return $status;
+        })
         ->addColumn('action', function ($row)
         {
 			if ($row->status == 1)
@@ -164,7 +180,7 @@ class UserController extends Controller
                         </div>';
 			return $action;
         })
-        ->rawColumns(['action','status'])
+        ->rawColumns(['action','status','role'])
         ->make(true);
     }
 
