@@ -86,8 +86,9 @@
 				<div class="col-12 col-lg-12 col-xl-12 col-xxl-12">
 					<label for="user_role" class="form-label">Select Role<span class="required">*</span></label>
 					<select  class="form-control"  name="role_id_edit" id="role_id_edit" placeholder="Role" required>
-					<!--<option value="" > Select Role </option>-->
+					<option value="" > Select Role </option>
 					<option value="2" @if($usr->role_id==2) selected @endif> User </option>
+					<option value="3" @if($usr->role_id==3) selected @endif> Sub User </option>
 					</select>
 				</div>
 			</div>
