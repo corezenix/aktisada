@@ -51,7 +51,7 @@ class AktisadaApiController extends Controller
 		else
 			$version="1.0.1";
 		
-		$comment="Role 0-Super admin, 2-User, 3-Sub user";
+		$comment="Role : 2-User, 3-Sub user";
         $validator = Validator::make($input,$rule);
         if ($validator->passes()) 
         {
