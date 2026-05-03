@@ -145,7 +145,7 @@
        <!--start footer-->
        <footer class="footer">
         <div class="footer-text">
-           Copyright ©Getlead Analytics Pvt Ltd, 2024. All right reserved.
+           Copyright ©AKTISADA, 2026. All right reserved.
         </div>
         </footer>
         <!--end footer-->
