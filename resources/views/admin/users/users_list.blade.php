@@ -40,7 +40,8 @@
                   <label class="pt5">● To import users from excel file, Download this file <a href="{{url('/').'/'.'user_import_example.xlsx'}}" download><b>user_import_example.xlsx</b></a> and set users into the file and import.</label>
 				  </div>
 				  <div class="col-lg-3 col-xl-3 col-xxl-3 col-3 text-right">
-				     <a href="javascript:;" class="btn btn-gl-primary btn-xs"  data-bs-toggle="offcanvas" data-bs-target="#add-user" ><i class="fa fa-plus"></i>&nbsp;Add User</a>
+				    <!-- <a href="javascript:;" class="btn btn-gl-primary btn-xs"  data-bs-toggle="offcanvas" data-bs-target="#add-user" ><i class="fa fa-plus"></i>&nbsp;Add User</a>-->
+					 <a href="javascript:;" class="btn btn-gl-primary btn-xs"  data-bs-toggle="modal" data-bs-target="#add-user" ><i class="fa fa-plus"></i>&nbsp;Add User</a>
 					 <a href="javascript:;" class="btn btn-primary btn-xs"  data-bs-toggle="modal" data-bs-target="#import_user" ><i class="fa fa-plus"></i>&nbsp;Import User</a>
 				  </div>
 
@@ -117,14 +118,26 @@
        </div>
 			
 			
-	<div class="offcanvas offcanvas-end shadow border-start-0 p-2" id="add-user" style="width:35% !important" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" aria-modal="true" role="dialog">
+<!--	<div class="offcanvas offcanvas-end shadow border-start-0 p-2" id="add-user" style="width:35% !important" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" aria-modal="true" role="dialog">
           <div class="offcanvas-header border-bottom">
             <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Add User</h5>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
           </div>
-			<div class="offcanvas-body">
+			<div class="offcanvas-body">-->
+			
+		<div class="modal fade" id="add-user" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg ">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			
+			<div class="modal-body">	
 
-			<form id="formAddUser">
+			
+			<div style="width:100%;height:750px;overflow-y:scroll !important;">
+			<form id="formAddUser" style="width:98%;">
 			@csrf
 			
 			<div class="row mb-2" >
@@ -230,12 +243,12 @@
 						
 			<div class="row mb-2">
 				<div class="col-lg-12 col-xl-12 col-xxl-12 text-end">
-				<button type="button" class="btn btn-danger btn-offcanvas-close" data-bs-dismiss="offcanvas" aria-label="Close">Close</button>
+				<button type="button" class="btn btn-danger btn-offcanvas-close" data-bs-dismiss="modal" aria-label="Close">Close</button>
 				<button class="btn btn-primary" id="btn-submit" type="submit"> Submit </button>
 				</div>
 			</div>
 			</form>
-			  
+			  </div>
             </div>
     </div>
 		
