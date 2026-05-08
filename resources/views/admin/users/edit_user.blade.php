@@ -96,7 +96,7 @@
 			
 			<div class="row mb-2">
 				<div class="col-lg-12 col-xl-12 col-xxl-12 text-end">
-				<button type="button" class="btn btn-danger btn-offcanvas-close" data-bs-dismiss="offcanvas" aria-label="Close">Close</button>
+				<button type="button" class="btn btn-danger btn-offcanvas-close" data-bs-dismiss="modal" aria-label="Close">Close</button>
 				<button class="btn btn-primary" id="btn-submit" type="submit"> Submit </button>
 				</div>
 			</div>

@@ -125,8 +125,8 @@
           </div>
 			<div class="offcanvas-body">-->
 			
-		<div class="modal fade" id="add-user" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg ">
+	<div class="modal fade" id="add-user" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	   <div class="modal-dialog modal-lg ">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLabel">Add User</h5>
@@ -251,11 +251,30 @@
 			  </div>
             </div>
     </div>
+	</div>	
+</div>		
+	
+	<div class="modal fade" id="edit-user" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg ">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+				
+			<!--<div style="width:100%;height:750px;overflow-y:scroll !important;">
 		
-		
+			  </div>-->
+			<div class="modal-body">
+			  
+			  
+            </div>
+    </div>
+	</div>
+	</div>
 		
 	
-	<div class="offcanvas offcanvas-end shadow border-start-0 p-2" id="edit-user" style="width:35% !important" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" aria-modal="true" role="dialog">
+	<!--<div class="offcanvas offcanvas-end shadow border-start-0 p-2" id="edit-user" style="width:35% !important" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" aria-modal="true" role="dialog">
           <div class="offcanvas-header border-bottom">
             <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Edit User</h5>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
@@ -263,7 +282,10 @@
 			<div class="offcanvas-body">
   
             </div>
-    </div>
+    </div>-->
+	
+	
+	
 
 
 <div class="modal fade" id="change-pass-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -345,19 +367,6 @@
 		</div>
 	</div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -549,7 +558,7 @@ $('#datatable tbody').on('click','.edit-user',function()
 {
 
 	var id=$(this).attr('id');
-	var Result=$("#edit-user .offcanvas-body");
+	var Result=$("#edit-user .modal-body");
 
 			jQuery.ajax({
 			type: "GET",

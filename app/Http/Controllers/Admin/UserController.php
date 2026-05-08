@@ -171,7 +171,7 @@ class UserController extends Controller
 			$action='<div class="fs-5 ms-auto dropdown">
                           <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="fadeIn animated bx bx-dots-vertical"></i></div>
                             <ul class="dropdown-menu">
-                              <li><a class="dropdown-item edit-user" href="javascript:void(0)" id="'.$row->pk_user_id.'" data-bs-toggle="offcanvas" data-bs-target="#edit-user"  ><i class="lni lni-pencil-alt"></i> Edit</a></li>
+                              <li><a class="dropdown-item edit-user" href="javascript:void(0)" id="'.$row->pk_user_id.'" data-bs-toggle="modal" data-bs-target="#edit-user"  ><i class="lni lni-pencil-alt"></i> Edit</a></li>
                               <li><a class="dropdown-item delete-user" href="javascript:void(0)" id="'.$row->pk_user_id.'"><i class="lni lni-trash"></i> Delete</a></li>
 							  <li><a class="dropdown-item change-pass" href="javascript:;" id="'.$row->pk_user_id.'" data-bs-toggle="modal" data-bs-target="#change-pass-modal"><i class="lni lni-lock"></i> Change Password</a></li>'
 							   .$btn.
